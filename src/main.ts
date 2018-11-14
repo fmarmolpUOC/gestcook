@@ -10,3 +10,21 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+/*platformBrowserDynamic().bootstrapModule(AppModule).then(() => {
+
+  const isSafari = () => {
+    return navigator.userAgent.indexOf('Safari') !== -1;
+  };
+
+  if (isSafari()) {
+    console.log('Service Worker not registered');
+  } else {
+
+    if ('serviceWorker' in navigator && ENV.production) {
+      navigator.serviceWorker.register('/ngsw-worker.js');
+      console.log('Service Worker registered');
+    }
+
+  }
+}).catch(err => console.error(err));*/
