@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    /*MANIFEST IOS*/
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    /*MANIFEST ANDROID*/
+    overscroll-behavior-y: contain;
+    /*no pull to refresh*/
+}
