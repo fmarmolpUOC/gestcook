@@ -7,7 +7,19 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFontAwesomeModule } from 'angular-font-awesome'
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { NewrecipeComponent } from './components/newrecipe/newrecipe.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { Page404Component } from './components/page404/page404.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { EditComponent } from './components/edit/edit.component';
+import { DetailsComponent } from './components/details/details.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { RegisterComponent } from './components/user/register/register.component'
 
 /*import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -20,7 +32,19 @@ import { ENV } from '@env';*/
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    NewrecipeComponent,
+    AdminComponent,
+    LandingComponent,
+    Page404Component,
+    FooterComponent,
+    EditComponent,
+    DetailsComponent,
+    LoginComponent,
+    ProfileComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
