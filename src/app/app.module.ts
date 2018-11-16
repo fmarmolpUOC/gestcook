@@ -51,7 +51,7 @@ import { ENV } from '@env';*/
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
     /*,
     AngularFireModule.initializeApp(ENV.firebase),
     AngularFireAuthModule,
