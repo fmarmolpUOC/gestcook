@@ -21,15 +21,6 @@ import { LoginComponent } from './components/user/login/login.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { RegisterComponent } from './components/user/register/register.component'
 
-/*import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireStorageModule } from 'angularfire2/storage';
-
-import * as firebase from 'firebase';
-
-import { ENV } from '@env';*/
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,28 +43,10 @@ import { ENV } from '@env';*/
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
-    /*,
-    AngularFireModule.initializeApp(ENV.firebase),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    AngularFireStorageModule*/
   ],
   providers: [
-    /*AuthService,
-    DatabaseService,
-    ServiceWorkerService,
-    { provide: ErrorHandler, useClass: SentryErrorHandler },
-    { provide: LoggerService, useClass: ConsoleLoggerService }*/
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  /*constructor( @Optional() @SkipSelf() parentModule: CoreModule,
-    private afs: AngularFirestore) {
-
-  throwIfAlreadyLoaded(parentModule, 'CoreModule');
-
-  const settings = { timestampsInSnapshots: true };
-  afs.app.firestore().settings(settings as firebase.firestore.Settings);
-  }*/
+export class AppModule {
 }
