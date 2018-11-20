@@ -1,9 +1,9 @@
-<section>
+<section class="register_form">
     <div class="bd-example-container-body">
         <div class="row justify-content-md-center">
             <div class="card-wrapper">
-                <div class="brand text-center">
-                    <img src="assets\icons\Logo_llarg.png">
+                <div class="brand text-center bg-primary">
+                    <img src="assets\icons\Logo_llarg_b&w.png">
                 </div>
                 <div class="card ">
                     <div class="card-body">
@@ -17,11 +17,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password">Contraseña
-                        <a href="forgot.html" class="float-right">
-                          Recordar contraseña?
-                        </a>
-                      </label>
+                                <label for="password">Contraseña</label>
+                                <a href="#" class="float-right">Recordar contraseña?</a>
+
                                 <input id="password" type="password" class="form-control" name="password" required data-eye>
                             </div>
 
@@ -37,7 +35,7 @@
                       </button>
                             </div>
                             <div class="margin-top20 text-center">
-                                No estás registrado? <a href="register.html">Registrate</a>
+                                No estás registrado? <a routerLink="/register">Registrate</a>
                             </div>
                         </form>
                     </div>
@@ -45,4 +43,9 @@
             </div>
         </div>
     </div>
+    <div class="margin-top20 text-center"><a routerLink="/landing">Volver</a></div>
 </section>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

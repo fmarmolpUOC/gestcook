@@ -9,32 +9,32 @@
 
         <div class="container card bg-primary">
             <button type="button" class="btn btn-outline-light"><span class=" fa fa-google "></span> Iniciar con Google</button>
-            <button type="button " class="btn btn-outline-light" routerLink="/register">Registrar</button>
-            <p>Tienes una cuenta?<a class="nav-item text-warning" routerLink="/login"> Iniciar sesión</a></p>
+            <button type="button " class="btn btn-outline-light" [routerLink]="['/register']">Registrar</button>
+            <p>Tienes una cuenta?<a class="nav-item text-warning" routerLink='/login'> Iniciar sesión</a></p>
         </div>
 
     </div>
 
-    <div class="card-deck">
+    <div class="card-deck ">
 
-        <div class="card border-primary mb-3">
-            <i class="fas fa-file fa-10x text-primary"></i>
+        <div class="card border-primary mb-3 ">
+            <i class="fas fa-file fa-10x text-primary "></i>
             <div class="card-body ">
                 <h3 class="card-title ">Crea, comparte y busca recetas</h3>
                 <p class="card-text ">Gracias a GESTCOOK podrás crear y compartir tus recetas. También puedes buscar entre las múltiples recetas que publican los usuarios.</p>
             </div>
         </div>
 
-        <div class="card border-primary mb-3">
-            <i class="fas fa-calendar-alt fa-10x text-primary"></i>
+        <div class="card border-primary mb-3 ">
+            <i class="fas fa-calendar-alt fa-10x text-primary "></i>
             <div class="card-body ">
                 <h3 class="card-title ">Planifica tu menú</h3>
                 <p class="card-text ">Con GESTCOOK podrás añadir a tu planificador de menú tus propias recetas, tus favoritas o buscar entre las publicadas por los demás usuarios.</p>
             </div>
         </div>
 
-        <div class="card border-primary mb-3">
-            <i class="fas fa-clipboard-list fa-10x text-primary"></i>
+        <div class="card border-primary mb-3 ">
+            <i class="fas fa-clipboard-list fa-10x text-primary "></i>
             <div class="card-body ">
                 <h3 class="card-title ">Crea listas de la compra</h3>
                 <p class="card-text ">Crear listas de la compra facilmente gracias a GESTCOOK. Escoge las recetas para tu menú y GESTCOOK añadirà los productos a tu lista de la compra.</p>
@@ -44,3 +44,7 @@
     </div>
 </div>
 <app-footer></app-footer>
+
+<div class="container ">
+    <router-outlet></router-outlet>
+</div>
