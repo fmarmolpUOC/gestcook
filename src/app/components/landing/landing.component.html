@@ -8,7 +8,7 @@
         <h3 style="margin-bottom: 3em;">Registrate para empezar a utilizar GESTCOOK. Podrás ver, crear y compartir recetas, además de tener acceso a otras muchas funcionalidades.</h3>
 
         <div class="container card bg-primary">
-            <button type="button" class="btn btn-outline-light"><span class=" fa fa-google "></span> Iniciar con Google</button>
+            <button type="button" class="btn btn-outline-light" (click)="onClickGoogleLogin()"><span class=" fa fa-google "></span> Iniciar con Google</button>
             <button type="button " class="btn btn-outline-light" [routerLink]="['/register']">Registrar</button>
             <p>Tienes una cuenta?<a class="nav-item text-warning" routerLink='/login'> Iniciar sesión</a></p>
         </div>

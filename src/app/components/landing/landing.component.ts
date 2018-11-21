@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
   }
+
+  onClickGoogleLogin() {
+    this.authService.loginGoogle()
+    .then((res) => {
+      console.log(res);
+    }).catch( err => console.log(err.message));
+  }
+
 
 }
