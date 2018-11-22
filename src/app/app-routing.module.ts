@@ -11,18 +11,19 @@ import { Page404Component } from './components/page404/page404.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { LoginComponent } from './components/user/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/landing', pathMatch: 'full'},
   {path: 'landing', component: LandingComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'favorites', component: FavoritesComponent},
-  {path: 'newrecipe', component: NewrecipeComponent},
-  {path: 'details/:id', component: DetailsComponent},
-  {path: 'edit/:id', component: EditComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard]},
+  {path: 'newrecipe', component: NewrecipeComponent, canActivate: [AuthGuard]},
+  {path: 'details/:id', component: DetailsComponent, canActivate: [AuthGuard]},
+  {path: 'edit/:id', component: EditComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: Page404Component},

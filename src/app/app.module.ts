@@ -31,8 +31,13 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AuthService } from './services/auth.service';
 export const firebaseConfig = environment.firebaseConfig;
+
 // Envitonments
 import { environment } from '../environments/environment';
+
+
+// Guard
+import { AuthGuard } from './guards/auth.guard';
 
 
 
@@ -68,7 +73,7 @@ import { environment } from '../environments/environment';
 
   ],
   providers: [
-    AuthService
+    AuthService, AuthGuard
   ],
   bootstrap: [AppComponent]
 })
