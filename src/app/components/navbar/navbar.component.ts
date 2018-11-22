@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Observable } from 'rxjs/Rx';
 
 
 @Component({
@@ -13,19 +12,22 @@ export class NavbarComponent implements OnInit {
   public userEmail: string;
   public userPicture: string;
   public userId: string;
-  public isLogin: string;
 
   constructor(
     private authService: AuthService
   ) { }
 
   ngOnInit() {
+    this.onComprobarUserLogin();
   }
 
   onComprobarUserLogin() {
     this.authService.getAuth().subscribe( auth => {
       if (auth) {
-        console.log(auth);
+        this.userName = auth.displayName;
+        this.userEmail = auth.email;
+        this.userPicture = auth.photoURL;
+        this.userId = auth.uid;
       }
     });
   }
@@ -33,7 +35,5 @@ export class NavbarComponent implements OnInit {
   onLogout() {
     this.authService.logout();
   }
-
-
 
 }
