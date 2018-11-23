@@ -1,11 +1,11 @@
 export interface RecipeInterface {
-  id?:string;
-  titulo?: string;
-  descripcion?: string;
-  preparacion?: string;
-  ingredientes?: string;
-  temporada?: string;
-  fechaPublicacion?: any;
+  id?: string;
+  title?: string;
+  description?: string;
+  preparation?: string;
+  ingredients?: string;
+  season?: string;
+  publicationDate?: any;
   userId?: string;
-  userNombre?: string;
+  userName?: string;
 }

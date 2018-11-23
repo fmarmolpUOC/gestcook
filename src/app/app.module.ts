@@ -29,8 +29,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+
 import { AuthService } from './services/auth.service';
+import { RecipeService } from './services/recipe.service';
+
 export const firebaseConfig = environment.firebaseConfig;
+
 
 // Envitonments
 import { environment } from '../environments/environment';
@@ -38,6 +42,8 @@ import { environment } from '../environments/environment';
 
 // Guard
 import { AuthGuard } from './guards/auth.guard';
+import { RecipesComponent } from './components/recipes/recipes.component';
+
 
 
 
@@ -57,7 +63,8 @@ import { AuthGuard } from './guards/auth.guard';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    RecipesComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +80,7 @@ import { AuthGuard } from './guards/auth.guard';
 
   ],
   providers: [
-    AuthService, AuthGuard
+    AuthService, AuthGuard, RecipeService
   ],
   bootstrap: [AppComponent]
 })

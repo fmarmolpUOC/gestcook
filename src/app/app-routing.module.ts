@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LandingComponent } from './components/landing/landing.component';
 import { HomeComponent } from './components/home/home.component';
+import { RecipesComponent } from './components/recipes/recipes.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { NewrecipeComponent } from './components/newrecipe/newrecipe.component';
 import { DetailsComponent } from './components/details/details.component';
@@ -15,10 +16,12 @@ import { AuthGuard } from './guards/auth.guard';
 
 
 
+
 const routes: Routes = [
   {path: '', redirectTo: '/landing', pathMatch: 'full'},
   {path: 'landing', component: LandingComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'recipes', component: RecipesComponent, canActivate: [AuthGuard]},
   {path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard]},
   {path: 'newrecipe', component: NewrecipeComponent, canActivate: [AuthGuard]},
   {path: 'details/:id', component: DetailsComponent, canActivate: [AuthGuard]},

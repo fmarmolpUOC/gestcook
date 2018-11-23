@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RecipeInterface } from '../../interfaces/recipe';
+import { RecipeService } from 'src/app/services/recipe.service';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-home',
@@ -8,9 +12,18 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  recipes: RecipeInterface[];
+
+  constructor(
+    private recipeService: RecipeService
+  ) { }
 
   ngOnInit() {
+    this.allRecipes();
+  }
+
+  allRecipes() {
+    this.recipeService.getAllRecipes().subscribe(recipes => this.recipes = recipes);
   }
 
 }

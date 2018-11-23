@@ -22,8 +22,8 @@ export class AuthGuard implements CanActivate {
     return this.authService.afAuth.authState
       .take(1)
       .map(authState => !! authState)
-      .do(logado => {
-        if (!logado) {
+      .do(loged => {
+        if (!loged) {
           this.router.navigate(['/landing']);
       }
     });
