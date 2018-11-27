@@ -7,35 +7,46 @@
                 </div>
                 <div class="card ">
                     <div class="card-body">
-                        <h4 class="card-title">Registrar</h4>
-                        <form method="POST">
+                        <form #formRegister="ngForm" (ngSubmit)="onAddUser()">
+                            <h4 class="card-title">Registrar</h4>
+                            <div class="alert alert-danger" role="alert" *ngIf="isError">{{msgError}}</div>
 
                             <div class="form-group">
                                 <label for="email">Correo electrónico</label>
-
-                                <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+                                <input [(ngModel)]="email" type="email" class="form-control" name="email" placeholder="Correo electrónico" required minlength="8" autofocus>
+                            </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="email.touched && !email.valid">
+                                <div *ngIf="email.errors.required">Email is required</div>
+                                <div *ngIf="email.errors.minlength">Email must be at least 8 characters</div>
                             </div>
 
                             <div class="form-group">
                                 <label for="password">Contraseña</label>
-                                <input id="password" type="password" class="form-control" name="password" required data-eye>
+                                <input [(ngModel)]="password" type="password" class="form-control" name="password" placeholder="Contraseña" required minlength="6" data-eye>
+                            </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="password.touched && !password.valid">
+                                <div *ngIf="password.errors.required">Password is required</div>
+                                <div *ngIf="password.errors.minlength">Password must be at least 5 characters</div>
                             </div>
 
-                            <div class="form-group">
-                                <label>
-                        <input type="checkbox" name="remember"> Mantener sesión
-                      </label>
+                            <!--<div class="form-group">
+                                <h5>Seleccionar image:</h5>
+                                <input type="file" accept=".png, .jpg" (change)="onUpload($event)">
                             </div>
+                            <div class="progress">
+                                <div [style.visibility]="(uploadPercent == 0) ? 'hidden' : 'visible'" class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadPercent | async) +'%'"></div>
+                            </div>-->
 
                             <div class="form-group no-margin">
-                                <button type="submit" class="btn btn-primary btn-block">
-                        Iniciar
-                      </button>
+                                <button type="submit" class="btn btn-primary btn-block">Registrar</button>
                             </div>
+
                             <div class="margin-top20 text-center">
                                 Tienes una cuenta? <a routerLink="/login">Iniciar sesión</a>
                             </div>
+
                         </form>
+
                     </div>
                 </div>
             </div>
