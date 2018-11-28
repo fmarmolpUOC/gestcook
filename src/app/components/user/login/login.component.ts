@@ -30,7 +30,20 @@ export class LoginComponent implements OnInit {
     this.authService.loginEmailUser(this.email, this.password)
       .then((res) => {
         this.router.navigate(['/home']);
-      }).catch(err => this.error = err.message); // catch(err => console.log('err', err.message));
+      })
+      // .catch(err => this.error = err.message);
+      // .catch(err => console.log('err', err.message));
+      .catch((err) => {if (err.message === 'The email address is badly formatted.') {
+        this.error = 'El formato del correo electrónico es incorrecto.';
+      }
+      if ( err.message === 'The password is invalid or the user does not have a password.') {
+        this. error = 'La contraseña no es válida o el usuario no tiene una contrasenya.';
+      }
+    });
   }
 
+
+
+
 }
+
