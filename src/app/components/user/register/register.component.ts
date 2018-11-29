@@ -13,17 +13,17 @@ import { Observable } from 'rxjs/internal/Observable';
 export class RegisterComponent implements OnInit {
 
   constructor(
-    private router: Router, 
-    private authService: AuthService, 
-    private storage: AngularFireStorage) { }
+    private router: Router,
+    private authService: AuthService//
+    /*private storage: AngularFireStorage*/) { }
     // @ViewChild('imageUser') inputImageUser: ElementRef;
 
   public email: string = '';
   public password: string = '';
   public error: string = '';
 
-   uploadPercent: Observable<number>;
-   urlImage: Observable<string>;
+   // uploadPercent: Observable<number>;
+   // urlImage: Observable<string>;
 
   ngOnInit() {
   }
@@ -47,9 +47,11 @@ export class RegisterComponent implements OnInit {
             // user.updateProfile({
               // displayName: '',
               // photoURL: this.inputImageUser.nativeElement.value
-            });  // .then(() => {
+            }
+          });  // .then(() => {
               this.router.navigate(['/home']);
-            })// .catch((error) => console.log('error', error));
+            })
+            // .catch((error) => console.log('error', error));
             .catch((err) => {if (err.message === 'The email address is badly formatted.') {
               this.error = 'El formato del correo electrónico es incorrecto.';
             }
@@ -57,18 +59,18 @@ export class RegisterComponent implements OnInit {
               this. error = 'La contraseña debe contener mínimo 6 caracteres.';
             }
             if ( err.message === 'The email address is already in use by another account.') {
-              this. error = 'El correo electrónico ya está registrado.';
+              this. error = 'El correo electrónico está siendo usado.';
             }
             console.log(err);
           });
-          })
-        }
-      }/*.catch(err => console.log('err', err.message));
+          // })
+  }
+}/*.catch(err => console.log('err', err.message));
       this.authService.registerUser(this.email, this.password)
       .then((res) => {
         this.router.navigate(['/home']);
       });*/
-  }
+ // }
   /*this.authService.loginEmailUser(this.email, this.password)
       .then((res) => {
         this.router.navigate(['/home']);
@@ -85,7 +87,7 @@ export class RegisterComponent implements OnInit {
     });
   }*/
 
-}
+// }
 
 /*
 onLogin(): void {
