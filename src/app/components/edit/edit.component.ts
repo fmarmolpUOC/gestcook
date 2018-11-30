@@ -20,7 +20,7 @@ export class EditComponent implements OnInit {
     season: '',
     publicationDate: '',
     userId: '',
-    userName: ''
+    userEmail: ''
   };
   constructor(
     private route: ActivatedRoute,
