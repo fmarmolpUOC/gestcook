@@ -20,7 +20,7 @@ export class NewrecipeComponent implements OnInit {
     season: '',
     publicationDate: '',
     userId: '',
-    userName: ''
+    userEmail: '',
   };
 
   constructor(
@@ -35,10 +35,11 @@ export class NewrecipeComponent implements OnInit {
     value.publicationDate = (new Date()).getTime();
     this.authService.getAuth().subscribe( user => {
       value.userId = user.uid;
-      value.userName = user.displayName;
+      value.userEmail = user.email;
       this.recipeService.addNewRecipe(value);
     });
     this.router.navigate(['/recipes']);
   }
+
 }
 

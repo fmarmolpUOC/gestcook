@@ -7,5 +7,5 @@ export interface RecipeInterface {
   season?: string;
   publicationDate?: any;
   userId?: string;
-  userName?: string;
+  userEmail?: string;
 }

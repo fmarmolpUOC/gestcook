@@ -14,19 +14,23 @@
                 <form #formGuardar="ngForm" (ngSubmit)="onGuardarReceta(formGuardar)">
                     <div class="form-group">
                         <label for="titulo">Titulo</label>
-                        <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="recipe.title">
+                        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título" [(ngModel)]="recipe.title">
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripción</label>
-                        <textarea type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="recipe.description"></textarea>
+                        <textarea type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" [(ngModel)]="recipe.description"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="ingredientes">Ingredientes</label>
-                        <textarea type="text" class="form-control" id="ingredientes" name="ingredientes" [(ngModel)]="recipe.ingredients"></textarea>
+                        <label for="tags">Tags</label>
+                        <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags separados por una coma" [(ngModel)]="recipe.title">
                     </div>
                     <div class="form-group">
                         <label for="preparacion">Preparación</label>
                         <textarea type="text" class="form-control" id="preparacion" name="preparacion" [(ngModel)]="recipe.preparation"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ingredientes">Ingredientes</label>
+                        <textarea type="text" class="form-control" id="ingredientes" name="ingredientes" [(ngModel)]="recipe.ingredients"></textarea>
                     </div>
 
                     <div class="form-group">
