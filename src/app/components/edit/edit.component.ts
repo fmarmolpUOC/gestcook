@@ -17,10 +17,10 @@ export class EditComponent implements OnInit {
     description: '',
     preparation: '',
     ingredients: '',
-    season: '',
     publicationDate: '',
     userId: '',
-    userEmail: ''
+    userEmail: '',
+    imageUrl: '',
   };
   constructor(
     private route: ActivatedRoute,
