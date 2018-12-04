@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
+import { UserInterface } from '../../../interfaces/user';
 
 
 @Component({
@@ -10,26 +11,27 @@ import { AuthService } from '../../../services/auth.service';
 
 
 export class ProfileComponent implements OnInit {
-  public userName: string;
-  public userEmail: string;
-  public userPicture: string;
-  public userId: string;
 
-  constructor(
-    private authService: AuthService
-  ) { }
+  constructor(private authService: AuthService) { }
+  user: UserInterface = {
+    name: '',
+    email: '',
+    photoUrl: ''
+  };
+
+  public providerId: string = 'null';
 
   ngOnInit() {
     this.onComprobarUserLogin();
   }
 
   onComprobarUserLogin() {
-    this.authService.getAuth().subscribe( auth => {
-      if (auth) {
-        this.userName = auth.displayName;
-        this.userEmail = auth.email;
-        this.userPicture = auth.photoURL;
-        this.userId = auth.uid;
+    this.authService.getAuth().subscribe( user => {
+      if (user) {
+        this.user.name = user.displayName;
+        this.user.email = user.email;
+        this.user.photoUrl = user.photoURL;
+        this.providerId = user.providerData[0].providerId;
       }
     });
   }

@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { RecipeInterface } from '../../interfaces/recipe';
+import { RecipeService } from '../../services/recipe.service';
+import { AuthService } from '../../services/auth.service';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-details',
@@ -7,9 +13,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor() { }
+  idRecipe: string;
+  idUserLogged: string;
+
+  recipe: RecipeInterface = {
+    id: '',
+    title: '',
+    description: '',
+    preparation: '',
+    ingredients: '',
+    publicationDate: '',
+    userId: '',
+    userEmail: '',
+    imageUrl: ''
+  };
+
+  constructor(
+    private recipeService: RecipeService,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
+    this.isUserLogged();
+    this.getRecipeDetails();
+  }
+
+  isUserLogged() {
+    this.authService.getAuth().subscribe( user => {
+      if (user) {
+        this.idUserLogged = user.uid;
+      }
+    });
+  }
+
+  getRecipeDetails() {
+    this.idRecipe = this.route.snapshot.params['id'];
+    this.recipeService.getOneRecipe(this.idRecipe).subscribe(recipe => this.recipe = recipe);
+  }
+
+  onClickDelete() {
+    if (confirm('Estás seguro que quieres eliminar la receta?')) {
+      this.recipeService.deleteRecipe(this.recipe);
+      this.router.navigate(['/home']);
+    }
   }
 
 }

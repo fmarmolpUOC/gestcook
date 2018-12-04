@@ -14,9 +14,7 @@ export class HomeComponent implements OnInit {
 
   recipes: RecipeInterface[];
 
-  constructor(
-    private recipeService: RecipeService
-  ) { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
     this.allRecipes();

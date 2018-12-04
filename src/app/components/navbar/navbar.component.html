@@ -1,43 +1,45 @@
-<div class="container d-blockp-2 fixed-top">
+<div class="barra_navegacio">
+    <div class="container d-blockp-2 fixed-top">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" routerLink="/home"><img src="assets\icons\icon-96x96_b&w.png" width="40" height="40" alt="GESTCOOK"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" routerLink="/home"><img src="assets\icons\icon-96x96_b&w.png" width="40" height="40" alt="GESTCOOK"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" routerLink="/recipes">Recetas <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/favorites">Favoritas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/menu">Menú</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="list">Lista</a>
-                </li>
-
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <li class="navbar-nav mr-auto nav-item">
-                        <a class="nav-link" href="# "><i class="fas fa-search fa-2x "></i></a>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" routerLink="/recipes">Recetas <span class="sr-only">(current)</span></a>
                     </li>
-                </form>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/favorites">Favoritas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/menu">Menú</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="list">Lista</a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/profile">{{userEmail}}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" (click)="onLogout()">Salir</a>
-                </li>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <li class="navbar-nav mr-auto nav-item">
+                            <a class="nav-link" href="# "><i class="fas fa-search fa-2x "></i></a>
+                        </li>
+                    </form>
 
-            </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/profile">{{userEmail}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" (click)="onLogout()">Salir</a>
+                    </li>
 
-        </div>
-    </nav>
+                </ul>
 
+            </div>
+        </nav>
+
+    </div>
 </div>

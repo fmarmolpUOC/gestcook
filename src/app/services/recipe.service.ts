@@ -11,6 +11,7 @@ export class RecipeService {
   recipeDoc: AngularFirestoreDocument<RecipeInterface>;
   recipes: Observable<RecipeInterface[]>;
   recipe: Observable<RecipeInterface>;
+
     constructor(
       private afs: AngularFirestore) {
         this.recipeCollection = this.afs.collection('recipes', ref => ref); // to load all recipes

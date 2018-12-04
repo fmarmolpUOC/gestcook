@@ -1,8 +1,10 @@
 <app-navbar></app-navbar>
 <div class="row">
     <div class="col-md-6 mx-auto mt-3">
-        <h1>ADMIN</h1>
-        <p>Esta es la zona de admin.</p>
-        <img src="{{userPicture}}">
+        <h1>Perfil de usuario</h1>
+        <h5>{{user.name}}</h5>
+        <h5>{{user.email}}</h5>
+        <img src="{{user.photoUrl}}" class="rounded-circle img-thumbnail" alt="profile image">
+
     </div>
 </div>

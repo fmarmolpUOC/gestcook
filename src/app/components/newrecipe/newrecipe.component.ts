@@ -34,7 +34,7 @@ export class NewrecipeComponent implements OnInit {
     private storage: AngularFireStorage,
   ) { }
 
-  @ViewChild('imageUser') inputImageUser: ElementRef;
+  @ViewChild('imageRecipe') inputImageRecipe: ElementRef;
 
   uploadPercent: Observable<number>;
   urlImage: Observable<string>;
@@ -58,7 +58,7 @@ export class NewrecipeComponent implements OnInit {
     this.authService.getAuth().subscribe( user => {
       value.userId = user.uid;
       value.userEmail = user.email;
-      value.imageUrl = this.inputImageUser.nativeElement.value;
+      value.imageUrl = this.inputImageRecipe.nativeElement.value;
       // value.imageUrl = this.urlImage;
       this.recipeService.addNewRecipe(value);
     });

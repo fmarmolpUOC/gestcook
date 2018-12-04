@@ -1,3 +1,8 @@
+<div class="container">
+    <app-navbar></app-navbar>
+</div>
+
+<!--
 <div class="row">
     <div class="col-md-10 blog-main">
         <div class="blog-post mt-4">
@@ -18,4 +23,33 @@
             <a class="btn btn-danger" (click)="onClickDelete()">Borrar</a>
         </div>
     </div>
+</div>
+-->
+
+<div class="card mb-3">
+    <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
+    <div class="card-body">
+        <h5 class="card-title">{{recipe.description}}</h5>
+        <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+    </div>
+    <img style="height: 50%; width: 50%; display: block; margin: auto;" src="{{recipe.imageUrl}}" alt="Card image">
+    <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+    <div class="card-body" *ngIf="idUserLogged == recipe.userId">
+        <a routerLink="/edit/{{recipe.id}}" class="badge badge-primary">Editar</a>
+        <a routerLink="/details/{{recipe.id}}" style="margin-left: 1em;" class="badge badge-danger text-white" (click)="onClickDelete()">Eliminar</a>
+    </div>
+    <div class="card-footer text-muted">
+        <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted">({{recipe.userEmail}})</small></p>
+    </div>
+</div>
+
+<div class="container">
+    <router-outlet></router-outlet>
 </div>
