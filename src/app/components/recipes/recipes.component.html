@@ -3,10 +3,33 @@
 </div>
 
 <div class="d-block p-2">
-    <p>recipes works!</p>
     <button type="button " class="btn btn-outline-light" [routerLink]="['/newrecipe']">Nueva receta</button>
 </div>
 
+<div class="jumbotron">
+    <h1 class="display-3">Mis recetas</h1>
+    <p class="lead">En esta sección tienes todas las recetas creada por ti.</p>
+    <hr class="my-4">
+    <p>Comparte tus recetas, editalas o eliminalas.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6" *ngFor="let recipe of recipes">
+        <div class="card mb-3" *ngIf="filterCondition(recipe)">
+            <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
+            <img style="height: 100%; width: 100%; display: block;" src="{{recipe.imageUrl}}" alt="Card image">
+            <div class="card-body">
+                <p class="card-text">{{recipe.description}}</p>
+            </div>
+            <div class="card-body">
+                <a href="/details/{{recipe.id}}" class="card-link">Leer más</a>
+            </div>
+            <div class="card-footer text-muted">
+                <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted">({{recipe.userEmail}})</small></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <router-outlet></router-outlet>

@@ -8,6 +8,7 @@ import {Observable} from 'rxjs/Observable';
 })
 export class RecipeService {
   recipeCollection: AngularFirestoreCollection<RecipeInterface>;
+  recipeMyCollection: AngularFirestoreCollection<RecipeInterface>;
   recipeDoc: AngularFirestoreDocument<RecipeInterface>;
   recipes: Observable<RecipeInterface[]>;
   recipe: Observable<RecipeInterface>;
@@ -33,6 +34,18 @@ export class RecipeService {
     });
   return this.recipes;
  }
+
+ getAllUserRecipes(userEmail: string): Observable<RecipeInterface[]> {
+  this.recipes = this.recipeCollection.snapshotChanges()
+    .map(changes => {
+      return changes.map(action => {
+        const data = action.payload.doc.data() as RecipeInterface;
+        data.id = action.payload.doc.id;
+        return data;
+      });
+  });
+return this.recipes;
+}
 
  getOneRecipe(idRecipe: string) {
   this.recipeDoc = this.afs.doc<RecipeInterface>(`recipes/${idRecipe}`);

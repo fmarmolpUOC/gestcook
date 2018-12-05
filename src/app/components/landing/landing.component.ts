@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class LandingComponent implements OnInit {
 
+  userEmail: string;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -16,16 +18,26 @@ export class LandingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isUserLogged();
   }
 
   onClickGoogleLogin() {
     this.authService.loginGoogle()
     .then((res) => {
-      //console.log(res);
-      //this.router.navigate(['/home']);
+      // console.log(res);
+      // this.router.navigate(['/home']); *DONA ERROR*
       this.zone.run(() => { this.router.navigate(['/home']); });
     }).catch( err => console.log(err.message));
   }
 
+  isUserLogged() {
+    this.authService.getAuth().subscribe( user => {
+      if (user) {
+        this.router.navigate(['/home']);
+        //this.userEmail = user.email;
+        //console.log(this.userEmail);
+      }
+    });
+  }
 
 }

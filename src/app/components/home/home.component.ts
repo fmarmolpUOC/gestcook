@@ -16,8 +16,14 @@ export class HomeComponent implements OnInit {
 
   constructor(private recipeService: RecipeService) { }
 
+  searchText: string = '';
+
   ngOnInit() {
     this.allRecipes();
+  }
+
+  filterCondition(recipe) {
+    return recipe.title.toLowerCase().indexOf(this.searchText.toLowerCase()) !== -1;
   }
 
   allRecipes() {
