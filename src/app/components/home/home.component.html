@@ -9,9 +9,14 @@
     <p>Comparte tus recetas, guarda tus favoritas o valora las que más te gusten.</p>
 </div>
 
+<form class="form-inline">
+    <input class="form-control" name="searchInput" placeholder="Search" #searchInput="ngModel" [(ngModel)]="searchText" style="width: 80%;">
+    <button class="btn btn-outline-primary" (click)="searchText=''">X</button>
+</form>
+
 <div class="row">
     <div class="col-md-6" *ngFor="let recipe of recipes">
-        <div class="card mb-3">
+        <div class="card mb-3" *ngIf="filterCondition(recipe)">
             <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
             <img style="height: 100%; width: 100%; display: block;" src="{{recipe.imageUrl}}" alt="Card image">
             <div class="card-body">
