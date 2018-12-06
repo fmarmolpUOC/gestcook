@@ -12,44 +12,21 @@
     <div class="col-md-6"></div>
 </div>
 
-<!--
-<div class="row">
-    <div class="col-md-10 blog-main">
-        <div class="blog-post mt-4">
-            <h1 class="blog-post-title border-bottom">{{recipe.title}}</h1>
-            <p class="blog-post-meta">{{recipe.publicationDate  | date: 'dd-MMM'}} Por <a href="#">{{recipe.userName}}</a></p>
-            <p>{{recipe.description}}</p>
-            <blockquote>
-                <h2>Preparación</h2>
-                <p>{{recipe.preparation}}</p>
-            </blockquote>
-            <h2>Ingredientes</h2>
-            <p>{{recipe.ingredients}}</p>
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="btn-group pull-right mt-4" *ngIf="idUsuarioLogado == recipe.userId">
-            <a routerLink="/edit/{{recipe.id}}" class="btn btn-dark">Editar</a>
-            <a class="btn btn-danger" (click)="onClickDelete()">Borrar</a>
-        </div>
-    </div>
-</div>
--->
-
 <div class="card mb-3">
     <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
-    <div class="card-body">
-        <h5 class="card-title">{{recipe.description}}</h5>
-        <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-    </div>
     <img src="{{recipe.imageUrl}}" alt="Card image">
-    <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">
+            <h5>{{recipe.description}}</h5>
+        </li>
+        <li class="list-group-item">
+            <h5>Preparación</h5>
+            <p class="card-text">{{recipe.preparation}}</p>
+        </li>
+        <li class="list-group-item">
+            <h5>Ingredientes</h5>
+            <p class="card-text">{{recipe.ingredients}}</p>
+        </li>
     </ul>
     <div class="card-body" *ngIf="idUserLogged == recipe.userId || 'gestcook.0@gmail.com' ">
         <a routerLink="/edit/{{recipe.id}}" class="badge badge-primary">Editar</a>

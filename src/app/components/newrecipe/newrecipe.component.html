@@ -9,15 +9,17 @@
 <div class="row">
     <div class="col-md-10 mx-auto mt-2">
         <div class="card">
-            <div class="card-header">Nueva receta</div>
+            <div class="card-header text-white bg-primary">
+                <h3>Nueva receta</h3>
+            </div>
             <div class="card-body">
                 <form #formGuardar="ngForm" (ngSubmit)="onGuardarReceta(formGuardar)">
                     <div class="form-group">
-                        <label for="titulo">Titulo</label>
+                        <label for="titulo"><h5>Titulo</h5></label>
                         <input type="text" class="form-control" id="tite" name="title" placeholder="Título" [(ngModel)]="recipe.title">
                     </div>
                     <div class="form-group">
-                        <label for="descripcion">Descripción</label>
+                        <label for="descripcion"><h5>Descripción</h5></label>
                         <textarea type="text" class="form-control" id="description" name="description" placeholder="Descripción" [(ngModel)]="recipe.description"></textarea>
                     </div>
                     <!--<div class="form-group">
@@ -25,12 +27,12 @@
                         <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags separados por una coma" [(ngModel)]="recipe.tags">
                     </div>-->
                     <div class="form-group">
-                        <label for="preparacion">Preparación</label>
-                        <textarea type="text" class="form-control" id="preparation" name="preparation" [(ngModel)]="recipe.preparation"></textarea>
+                        <label for="preparacion"><h5>Preparación</h5></label>
+                        <textarea type="text" class="form-control" id="preparation" name="preparation" placeholder="Preparación" [(ngModel)]="recipe.preparation"></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="ingredients">Ingredientes</label>
+                        <label for="ingredients"><h5>Ingredientes</h5></label>
                         <textarea type="text" class="form-control" id="ingredients" name="ingredients" placeholder="Ingredientes" [(ngModel)]="recipe.ingredients"></textarea>
                     </div>
 
@@ -48,28 +50,6 @@
                         </div>
                     </div>
                     <input #imageRecipe type="hidden" [value]="urlImage | async">
-
-                    <!--<div class="row">
-                        <div class="form-group col-xs-12">
-                            <div class="col-xs-8"><input type="text" class="form-control" id="name" name="name" placeholder="Ingrediente" [(ngModel)]="recipe.ingredients.name"></div>
-                            <div class="col-xs-2"><input type="number" class="form-control" id="amount" name="amount" [(ngModel)]="recipe.ingredients.amount"></div>
-                            <div class="col-xs-2">
-                                <select class="form-control" id="unit" name="unit" [(ngModel)]="recipe.ingredients.unit">
-                                    <option></option>
-                                    <option>ut</option>
-                                    <option>gr</option>
-                                    <option>ml</option>
-                            </select>
-                            </div>
-                            <div class="col-xs-2"><button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button></div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add Ingredient</button>
-                        </div>
-                    </div>-->
                     <input *ngIf="urlImage | async; else btnDisabled" type="submit" value="Guardar" class="btn btn-primary btn-block">
                     <ng-template #btnDisabled>
                         <input type="submit" disabled=true value="Guardar" class="btn btn-secondary btn-block">

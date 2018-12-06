@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { RecipeInterface } from '../../interfaces/recipe';
 import { RecipeService } from '../../services/recipe.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -10,7 +14,10 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
+
   idRecipe: string;
+  idUserLogged: string;
+
   recipe: RecipeInterface = {
     id: '',
     title: '',
@@ -22,14 +29,42 @@ export class EditComponent implements OnInit {
     userEmail: '',
     imageUrl: '',
   };
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private recipeService: RecipeService
+
+    constructor(
+      private authService: AuthService,
+      private recipeService: RecipeService,
+      private router: Router,
+      private storage: AngularFireStorage,
+      private route: ActivatedRoute
     ) { }
+
+    @ViewChild('imageRecipe') inputImageRecipe: ElementRef;
+
+    uploadPercent: Observable<number>;
+    urlImage: Observable<string>;
 
   ngOnInit() {
     this.getDetallesReceta();
+    this.isUserLogged();
+  }
+
+  onUpload(e) {
+    console.log('subir', e.target.files[0]);
+    const id = Math.random().toString(36).substring(2);
+    const file = e.target.files[0];
+    const filePath = `gestcook/profile_${id}`;
+    const ref = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+    this.uploadPercent = task.percentageChanges();
+    task.snapshotChanges().pipe(finalize(() => this.urlImage = ref.getDownloadURL())).subscribe();
+  }
+
+  isUserLogged() {
+    this.authService.getAuth().subscribe( user => {
+      if (user) {
+        this.idUserLogged = user.uid;
+      }
+    });
   }
 
   getDetallesReceta() {
@@ -37,8 +72,9 @@ export class EditComponent implements OnInit {
     this.recipeService.getOneRecipe(this.idRecipe).subscribe( recipe => this.recipe = recipe);
   }
 
-  onModificarReceta({value}: {value: RecipeInterface}) {
+  onClickUpdate({value}: {value: RecipeInterface}) {
     value.id = this.idRecipe;
+    value.imageUrl = this.inputImageRecipe.nativeElement.value;
     this.recipeService.updateRecipe(value);
     this.router.navigate(['/details/' + this.idRecipe]);
   }
