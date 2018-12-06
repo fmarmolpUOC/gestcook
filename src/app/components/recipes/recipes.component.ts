@@ -20,6 +20,8 @@ export class RecipesComponent implements OnInit {
 
   userEmail: string;
 
+  searchText: string = '';
+
   constructor(
     private authService: AuthService,
     private recipeService: RecipeService
@@ -39,12 +41,16 @@ export class RecipesComponent implements OnInit {
     });
   }
 
+  allRecipes() {
+    this.recipeService.getAllRecipes().subscribe(recipes => this.recipes = recipes);
+  }
+
   filterCondition(recipe) {
     return recipe.userEmail.toLowerCase().indexOf(this.userEmail.toLowerCase()) !== -1;
   }
 
- allRecipes() {
-  this.recipeService.getAllRecipes().subscribe(recipes => this.recipes = recipes);
-}
+  filterSearchCondition(recipe) {
+    return recipe.title.toLowerCase().indexOf(this.searchText.toLowerCase()) !== -1;
+  }
 
 }

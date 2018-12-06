@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeInterface } from '../../interfaces/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -14,12 +15,26 @@ export class HomeComponent implements OnInit {
 
   recipes: RecipeInterface[];
 
-  constructor(private recipeService: RecipeService) { }
+  idUserLogged: string;
+
+  constructor(
+    private recipeService: RecipeService,
+    private authService: AuthService,
+    ) { }
 
   searchText: string = '';
 
   ngOnInit() {
+    this.isUserLogged();
     this.allRecipes();
+  }
+
+  isUserLogged() {
+    this.authService.getAuth().subscribe( user => {
+      if (user) {
+        this.idUserLogged = user.uid;
+      }
+    });
   }
 
   filterCondition(recipe) {

@@ -1,32 +1,41 @@
-<div class="d-block p-2">
+<div class="container">
     <app-navbar></app-navbar>
 </div>
 
-<div class="d-block p-2">
-    <button type="button " class="btn btn-outline-light" [routerLink]="['/newrecipe']">Nueva receta</button>
+<div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-6">
+        <div class=" mb-3">
+            <form class="form-inline">
+                <input class="form-control" name="searchInput" placeholder="Buscar" #searchInput="ngModel" [(ngModel)]="searchText" style="width: 90%">
+                <i class="fas fa-search fa-2x" style="width: 10%; padding-left: 1%"></i>
+            </form>
+        </div>
+    </div>
 </div>
 
 <div class="jumbotron">
     <h1 class="display-3">Mis recetas</h1>
-    <p class="lead">En esta sección tienes todas las recetas creada por ti.</p>
+    <p class="lead">En esta sección tienes un espacio donde gurdar todas tus recetas.</p>
     <hr class="my-4">
-    <p>Comparte tus recetas, editalas o eliminalas.</p>
+    <p>Crea, edita y comparte tus recetas.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" [routerLink]="['/newrecipe']" role="button">Añadir receta</a>
+    </p>
 </div>
 
-<div class="row">
-    <div class="col-md-6" *ngFor="let recipe of recipes">
-        <div class="card mb-3" *ngIf="filterCondition(recipe)">
-            <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
-            <img style="height: 100%; width: 100%; display: block;" src="{{recipe.imageUrl}}" alt="Card image">
-            <div class="card-body">
-                <p class="card-text">{{recipe.description}}</p>
-            </div>
-            <div class="card-body">
-                <a href="/details/{{recipe.id}}" class="card-link">Leer más</a>
-            </div>
-            <div class="card-footer text-muted">
-                <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted">({{recipe.userEmail}})</small></p>
-            </div>
+<div *ngFor="let recipe of recipes">
+    <div class="card mb-3" *ngIf="filterCondition(recipe) && filterSearchCondition(recipe)">
+        <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
+        <img src="{{recipe.imageUrl}}" alt="Card image">
+        <div class="card-body">
+            <p class="card-text">{{recipe.description}}</p>
+        </div>
+        <div class="card-body">
+            <a href="/details/{{recipe.id}} " class="card-link ">Leer más</a>
+        </div>
+        <div class="card-footer text-muted">
+            <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted ">({{recipe.userEmail}})</small></p>
         </div>
     </div>
 </div>

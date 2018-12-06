@@ -1,3 +1,28 @@
 .barra_navegacio {
     margin-bottom: 6em;
 }
+
+a.big {
+    font-size: 1.5em;
+    font-family: 'Lucida Console';
+}
+
+li.big {
+    font-size: 1.5em;
+    transition: width 1s, height 1s, transform 1s;
+}
+
+li.big:hover {
+    font-size: 1.5em;
+    transform: rotate(-20deg);
+}
+
+a.big.rotate {
+    font-size: 1.5em;
+    transform: rotate(-20deg);
+}
+
+li.big.active:hover {
+    font-size: 1.5em;
+    transform: rotate(0deg);
+}
