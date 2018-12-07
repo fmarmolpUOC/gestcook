@@ -75,11 +75,16 @@ export class NewrecipeComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         this.url = event.target.result;
+        console.log('url', this.url);
       };
     }
+
   }
+
+
+
 
 }
 

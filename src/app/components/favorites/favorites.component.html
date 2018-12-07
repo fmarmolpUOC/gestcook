@@ -1,11 +1,42 @@
-<app-navbar></app-navbar>
-
 <div class="container">
-
-    <p>This is the favorites page</p>
-
+    <app-navbar></app-navbar>
 </div>
 
-<div class="container">
+<div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-6">
+        <div class=" mb-3">
+            <form class="form-inline">
+                <input class="form-control" name="searchInput" placeholder="Buscar" #searchInput="ngModel" [(ngModel)]="searchText" style="width: 90%">
+                <i class="fas fa-search fa-2x" style="width: 10%; padding-left: 1%"></i>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron ">
+    <h1 class="display-3 ">Mis recetas favoritas</h1>
+    <p class="lead ">En esta sección tienes un espacio donde guardar tus recetas favoritas creadas por otros usuarios.</p>
+    <hr class="my-4 ">
+    <p>Busca entre tus recetas favoritas.</p>
+</div>
+
+<div *ngFor="let recipe of recipes">
+    <div class="card mb-3" *ngIf="idUserLogged != recipe.userId && filterCondition(recipe)">
+        <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
+        <img src="{{recipe.imageUrl}}" alt="Card image">
+        <div class="card-body">
+            <p class="card-text">{{recipe.description}}</p>
+        </div>
+        <div class="card-body">
+            <a href="/details/{{recipe.id}} " class="card-link ">Leer más</a>
+        </div>
+        <div class="card-footer text-muted">
+            <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted ">({{recipe.userEmail}})</small></p>
+        </div>
+    </div>
+</div>
+
+<div class="container ">
     <router-outlet></router-outlet>
 </div>

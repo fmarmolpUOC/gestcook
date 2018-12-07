@@ -36,7 +36,7 @@
                         <h5>Imagen receta:</h5>
                         <img *ngIf="urlImage | async; else actualImage" [src]="url" height="200">
 
-                        <input type="file" accept=".png, .jpg" (change)="onUpload($event); onSelectFile($event)">
+                        <input type="file" accept=".png, .jpg" (change)=" onUpload($event); onSelectFile($event)">
                         <ng-template #actualImage>
                             <img src="{{recipe.imageUrl}}" alt="Card image">
                         </ng-template>

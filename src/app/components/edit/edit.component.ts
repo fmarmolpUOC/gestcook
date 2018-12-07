@@ -8,6 +8,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -86,10 +87,11 @@ export class EditComponent implements OnInit {
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
         this.url = event.target.result;
       };
     }
   }
+
 
 }
