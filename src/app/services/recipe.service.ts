@@ -15,7 +15,7 @@ export class RecipeService {
 
     constructor(
       private afs: AngularFirestore) {
-        this.recipeCollection = this.afs.collection('recipes', ref => ref); // to load all recipes
+        this.recipeCollection = this.afs.collection('recipes', ref => ref.orderBy('publicationDate', 'desc')); // to load all recipes
       }
 
   // To add recipes into the collection of recipes
