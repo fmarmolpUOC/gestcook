@@ -17,6 +17,7 @@ export class EditComponent implements OnInit {
 
   idRecipe: string;
   idUserLogged: string;
+  url = '';
 
   recipe: RecipeInterface = {
     id: '',
@@ -77,6 +78,18 @@ export class EditComponent implements OnInit {
     value.imageUrl = this.inputImageRecipe.nativeElement.value;
     this.recipeService.updateRecipe(value);
     this.router.navigate(['/details/' + this.idRecipe]);
+  }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+      };
+    }
   }
 
 }

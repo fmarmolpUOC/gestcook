@@ -31,14 +31,18 @@
                         <label for="ingredientes"><h5>Ingredientes</h5></label>
                         <textarea type="text" class="form-control" id="ingredients" name="ingredients" [(ngModel)]="recipe.ingredients"></textarea>
                     </div>
+
                     <div class="form-group">
                         <h5>Imagen receta:</h5>
-                        <img *ngIf="urlImage | async; else actualImage" src="{{recipe.imageUrl}}" alt="Card image">
+                        <img *ngIf="urlImage | async; else actualImage" [src]="url" height="200">
+
+                        <input type="file" accept=".png, .jpg" (change)="onUpload($event); onSelectFile($event)">
                         <ng-template #actualImage>
                             <img src="{{recipe.imageUrl}}" alt="Card image">
                         </ng-template>
-                        <input type="file" accept=".png, .jpg" (change)="onUpload($event)">
+
                     </div>
+
                     <div class="progress">
                         <ng-template #charging>
                             <div [style.visibility]="(uploadPercent == 0) ? 'hidden' : 'visible'" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" [style.width]="(uploadPercent | async) +'%'">

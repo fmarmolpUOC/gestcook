@@ -38,7 +38,8 @@
 
                     <div class="form-group">
                         <h5>Imagen receta:</h5>
-                        <input type="file" accept=".png, .jpg" (change)="onUpload($event)">
+                        <img [src]="url" height="200"> <br/>
+                        <input type="file" accept=".png, .jpg" (change)="onUpload($event); onSelectFile($event)">
                     </div>
                     <div class="progress">
                         <ng-template #charging>

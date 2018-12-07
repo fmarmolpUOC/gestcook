@@ -15,6 +15,9 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./newrecipe.component.css']
 })
 export class NewrecipeComponent implements OnInit {
+
+  url = '';
+
   recipe: RecipeInterface = {
     id: '',
     title: '',
@@ -64,6 +67,18 @@ export class NewrecipeComponent implements OnInit {
     });
     this.router.navigate(['/recipes']);
     console.log(value);
+  }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+      };
+    }
   }
 
 }
