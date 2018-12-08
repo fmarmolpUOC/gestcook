@@ -22,15 +22,19 @@
 </div>
 
 <div *ngFor="let recipe of recipes">
-    <div class="card mb-3" *ngIf="idUserLogged != recipe.userId && filterCondition(recipe)">
+    <div class="card border-primary mb-3" *ngIf="idUserLogged != recipe.userId && filterCondition(recipe)">
         <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
         <img src="{{recipe.imageUrl}}" alt="Card image">
         <div class="card-body">
             <p class="card-text">{{recipe.description}}</p>
         </div>
-        <div class="card-body">
-            <a href="/details/{{recipe.id}} " class="card-link ">Leer más</a>
-        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="/details/{{recipe.id}} " class="card-link ">Leer más</a></li>
+            <li class="list-group-item" *ngIf="count==0; else noFavorite" (click)="addOnFavorites($event)"><i id="{{recipe.id}}" class="far fa-bookmark"></i></li>
+            <ng-template #noFavorite>
+                <li class="list-group-item" (click)="deleteOnFavorites($event)"><i id="{{recipe.id}}" class="fas fa-bookmark"></i></li>
+            </ng-template>
+        </ul>
         <div class="card-footer text-muted">
             <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted ">({{recipe.userEmail}})</small></p>
         </div>

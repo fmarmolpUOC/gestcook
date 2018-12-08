@@ -25,7 +25,7 @@
 </div>
 
 <div *ngFor="let recipe of recipes">
-    <div class="card mb-3" *ngIf="filterCondition(recipe) && filterSearchCondition(recipe)">
+    <div class="card border-primary mb-3" *ngIf="filterCondition(recipe) && filterSearchCondition(recipe)">
         <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
         <img src="{{recipe.imageUrl}}" alt="Card image">
         <div class="card-body">
@@ -40,6 +40,6 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container ">
     <router-outlet></router-outlet>
 </div>

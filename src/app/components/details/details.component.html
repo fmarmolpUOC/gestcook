@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6">
-        <a *ngIf="idUserLogged == recipe.userId;else backHome" routerLink="/recipes" class="btn btn-link">
+        <a *ngIf="idUserLogged == recipe.userEmail; else backHome" routerLink="/recipes" class="btn btn-link">
             <i class="fa fa-arrow-circle-o-left"></i>Atrás
         </a>
         <ng-template #backHome>
@@ -28,7 +28,10 @@
             <p class="card-text">{{recipe.ingredients}}</p>
         </li>
     </ul>
-    <div class="card-body" *ngIf="idUserLogged == recipe.userId || 'gestcook.0@gmail.com' ">
+    <div class="card-body" *ngIf=" idUserLogged == recipe.userEmail || idUserLogged =='gestcook.0@gmail.com' ">
+        <script>
+            console.log(idUserLogged)
+        </script>
         <a routerLink="/edit/{{recipe.id}}" class="badge badge-primary">Editar</a>
         <a routerLink="/recipes" style="margin-left: 1em;" class="badge badge-danger text-white" (click)="onClickDelete()">Eliminar</a>
     </div>

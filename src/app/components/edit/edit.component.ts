@@ -27,7 +27,7 @@ export class EditComponent implements OnInit {
     preparation: '',
     ingredients: '',
     publicationDate: '',
-    userId: '',
+    // userId: '', Si l'administrador edita una recepta, continua amb l'Id de l'usuari que l'ha creat
     userEmail: '',
     imageUrl: '',
   };
@@ -47,7 +47,7 @@ export class EditComponent implements OnInit {
 
   ngOnInit() {
     this.getDetallesReceta();
-    this.isUserLogged();
+    // this.isUserLogged();
   }
 
   onUpload(e) {
@@ -61,13 +61,13 @@ export class EditComponent implements OnInit {
     task.snapshotChanges().pipe(finalize(() => this.urlImage = ref.getDownloadURL())).subscribe();
   }
 
-  isUserLogged() {
+  /*isUserLogged() {
     this.authService.getAuth().subscribe( user => {
       if (user) {
         this.idUserLogged = user.uid;
       }
     });
-  }
+  }*/
 
   getDetallesReceta() {
     this.idRecipe = this.route.snapshot.params['id'];

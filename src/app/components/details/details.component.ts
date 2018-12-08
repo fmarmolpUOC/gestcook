@@ -43,7 +43,7 @@ export class DetailsComponent implements OnInit {
   isUserLogged() {
     this.authService.getAuth().subscribe( user => {
       if (user) {
-        this.idUserLogged = user.uid;
+        this.idUserLogged = user.email;
       }
     });
   }

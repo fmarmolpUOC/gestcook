@@ -22,17 +22,21 @@
 </div>
 
 <div *ngFor="let recipe of recipes">
-    <div class="card mb-3" *ngIf="idUserLogged != recipe.userId && filterCondition(recipe)">
-        <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
-        <img src="{{recipe.imageUrl}}" alt="Card image">
-        <div class="card-body">
-            <p class="card-text">{{recipe.description}}</p>
-        </div>
-        <div class="card-body">
-            <a href="/details/{{recipe.id}} " class="card-link ">Leer más</a>
-        </div>
-        <div class="card-footer text-muted">
-            <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted ">({{recipe.userEmail}})</small></p>
+    <div *ngFor=" let favorite of recipe.favorites">
+        {{favorite}} {{recipe.userId}}
+        <div class="card border-primary mb-3" *ngIf="recipe.userId == favorite">
+
+            <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
+            <img src="{{recipe.imageUrl}}" alt="Card image">
+            <div class="card-body">
+                <p class="card-text">{{recipe.description}}</p>
+            </div>
+            <div class="card-body">
+                <a href="/details/{{recipe.id}} " class="card-link ">Leer más</a>
+            </div>
+            <div class="card-footer text-muted">
+                <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted ">({{recipe.userEmail}})</small></p>
+            </div>
         </div>
     </div>
 </div>

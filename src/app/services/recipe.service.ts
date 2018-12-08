@@ -8,14 +8,13 @@ import {Observable} from 'rxjs/Observable';
 })
 export class RecipeService {
   recipeCollection: AngularFirestoreCollection<RecipeInterface>;
-  recipeMyCollection: AngularFirestoreCollection<RecipeInterface>;
   recipeDoc: AngularFirestoreDocument<RecipeInterface>;
   recipes: Observable<RecipeInterface[]>;
   recipe: Observable<RecipeInterface>;
 
     constructor(
       private afs: AngularFirestore) {
-        this.recipeCollection = this.afs.collection('recipes', ref => ref.orderBy('publicationDate', 'desc')); // to load all recipes
+        this.recipeCollection = this.afs.collection('recipes', ref => ref.orderBy('publicationDate', 'desc')); // ordered
       }
 
   // To add recipes into the collection of recipes
@@ -69,5 +68,13 @@ return this.recipes;
   this.recipeDoc = this.afs.doc(`recipes/${recipe.id}`);
   this.recipeDoc.delete();
  }
+
+ /*updateRecipeFavorite(recipe: RecipeInterface) {
+   this.recipeDoc = this.afs.doc(`recipes/${recipe.id}`);
+   // this.recipeDoc.set(us);
+  console.log(this.recipeDoc);
+}*/
+
+
 
 }
