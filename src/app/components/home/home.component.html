@@ -30,9 +30,17 @@
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><a href="/details/{{recipe.id}} " class="card-link ">Leer más</a></li>
-            <div *ngFor="let favorite of recipe.userFavorite">
-                <li class="list-group-item" *ngIf="idUserLogged == favorite"><i id="{{recipe.id}}" class="fas fa-bookmark"></i></li>
+            <div *ngIf="recipe.userFavorite">
+                <div *ngFor="let favorite of recipe.userFavorite">
+                    <li class="list-group-item" *ngIf="idUserLogged == favorite"><i id="{{recipe.id}}" class="fas fa-bookmark"></i></li>
+                </div>
             </div>
+            <div *ngFor="let favorite of recipe.userFavorite">
+                <div *ngIf="(idUserLogged != favorite) && (recipe.userFavorite.lastIndexOf(favorite) + 1 == recipe.userFavorite.length)">
+                    <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i></li>
+                </div>
+            </div>
+
             <div *ngIf="!recipe.userFavorite">
                 <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i></li>
             </div>
