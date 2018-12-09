@@ -27,7 +27,8 @@ export class NewrecipeComponent implements OnInit {
     publicationDate: '',
     userId: '',
     userEmail: '',
-    imageUrl: ''
+    imageUrl: '',
+    userFavorite: Array[''],
   };
 
   constructor(

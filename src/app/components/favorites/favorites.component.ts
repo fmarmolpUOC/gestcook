@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RecipeInterface } from '../../interfaces/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { AuthService } from '../../services/auth.service';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-favorites',
@@ -14,11 +16,32 @@ export class FavoritesComponent implements OnInit {
 
   recipes: RecipeInterface[];
 
+  recipe: RecipeInterface = {
+    id: '',
+    title: '',
+    description: '',
+    preparation: '',
+    ingredients: '',
+    publicationDate: '',
+    userId: '',
+    userEmail: '',
+    imageUrl: '',
+    userFavorite: Array[''],
+  };
+
+  idRecipe: string;
+  idUser: string;
   idUserLogged: string;
+  id: string;
+  us: string;
+  count = 0;
 
   constructor(
     private recipeService: RecipeService,
     private authService: AuthService,
+    private router: Router,
+    private storage: AngularFireStorage,
+    private route: ActivatedRoute
     ) { }
 
   searchText: string = '';
@@ -42,6 +65,18 @@ export class FavoritesComponent implements OnInit {
 
   allRecipes() {
     this.recipeService.getAllRecipes().subscribe(recipes => this.recipes = recipes);
+  }
+
+  addOnFavorites(event) {
+    const id: string = (event.target as Element).id;
+    const us = this.idUserLogged;
+    this.count =  1;
+    console.log(id, us);
+  }
+
+  deleteOnFavorites(event) {
+    this.count =  0;
+    // console.log(this.count);
   }
 
 }

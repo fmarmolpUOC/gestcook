@@ -30,12 +30,14 @@
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><a href="/details/{{recipe.id}} " class="card-link ">Leer más</a></li>
-            <li class="list-group-item" *ngIf="count==0; else noFavorite" (click)="addOnFavorites($event)"><i id="{{recipe.id}}" class="far fa-bookmark"></i></li>
-            <ng-template #noFavorite>
-                <li class="list-group-item" (click)="deleteOnFavorites($event)"><i id="{{recipe.id}}" class="fas fa-bookmark"></i></li>
-            </ng-template>
+            <div *ngFor="let favorite of recipe.userFavorite">
+                <li class="list-group-item" *ngIf="idUserLogged == favorite"><i id="{{recipe.id}}" class="fas fa-bookmark"></i></li>
+            </div>
+            <div *ngIf="!recipe.userFavorite">
+                <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i></li>
+            </div>
         </ul>
-        <div class="card-footer text-muted">
+        <div class="card-footer text-muted ">
             <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted ">({{recipe.userEmail}})</small></p>
         </div>
     </div>

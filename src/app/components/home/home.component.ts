@@ -8,6 +8,7 @@ import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -27,10 +28,14 @@ export class HomeComponent implements OnInit {
     userId: '',
     userEmail: '',
     imageUrl: '',
+    userFavorite: Array[''],
   };
 
   idRecipe: string;
+  idUser: string;
   idUserLogged: string;
+  id: string;
+  us: string;
   count = 0;
 
   constructor(
@@ -64,10 +69,9 @@ export class HomeComponent implements OnInit {
     this.recipeService.getAllRecipes().subscribe(recipes => this.recipes = recipes);
   }
 
-  addOnFavorites(event) {
+  /*addOnFavorites(event) {
     const id: string = (event.target as Element).id;
     const us = this.idUserLogged;
-    this.router.navigate(['/home/']);
     this.count =  1;
     console.log(id, us);
   }
@@ -75,14 +79,6 @@ export class HomeComponent implements OnInit {
   deleteOnFavorites(event) {
     this.count =  0;
     // console.log(this.count);
-  }
-
-  /*onClickUpdate({value}: {value: RecipeInterface}) {
-    value.id = this.addOnFavorites(event);
-    value.favorites[0] = this.idUserLogged;
-    this.recipeService.updateRecipe(value);
-    this.router.navigate(['/home/']);
-    console.log(value.id, value.favorites[0]);
   }*/
 
 }

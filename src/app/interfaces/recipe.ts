@@ -8,5 +8,5 @@ export interface RecipeInterface {
   userId?: string;
   userEmail?: string;
   imageUrl?: string;
-
+  userFavorite?: string[];
 }
