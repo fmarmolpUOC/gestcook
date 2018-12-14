@@ -58,6 +58,9 @@ export class RegisterComponent implements OnInit {
             if ( err.message === 'The password must be 6 characters long or more.') {
               this. error = 'La contraseña debe contener mínimo 6 caracteres.';
             }
+            if ( err.message === 'Password should be at least 6 characters') {
+              this. error = 'La contraseña debe contener mínimo 6 caracteres.';
+            }
             if ( err.message === 'The email address is already in use by another account.') {
               this. error = 'El correo electrónico está siendo usado.';
             }
