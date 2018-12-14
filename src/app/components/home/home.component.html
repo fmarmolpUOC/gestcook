@@ -30,20 +30,42 @@
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><a href="/details/{{recipe.id}} " class="card-link ">Leer más</a></li>
-            <div *ngIf="recipe.userFavorite">
+            <!-- <div *ngIf="recipe.userFavorite">
+                <p>{{recipe.userFavorite.length}}</p>
                 <div *ngFor="let favorite of recipe.userFavorite">
-                    <li class="list-group-item" *ngIf="idUserLogged == favorite"><i id="{{recipe.id}}" class="fas fa-bookmark"></i></li>
+                    <li class="list-group-item" *ngIf="idUserLogged == favorite; else noFavorite"><i id="{{recipe.id}}" class="fas fa-bookmark">{{recipe.userFavorite.length}}</i></li>
+                    <ng-template #noFavorite>
+
+                        <div *ngIf=" (favorite.lastIndexOf(recipe.userFavorite) +1 == recipe.userFavorite.length)">
+                            <li class="list-group-item">Esta a favorits, però no d'aquest usuari{{recipe.userFavorite.lastIndexOf(favorite)+1}}{{recipe.userFavorite.length}}<i id="{{recipe.id}}" class="far fa-bookmark"></i></li>
+
+                        </div>
+                    </ng-template>
                 </div>
-            </div>
-            <div *ngFor="let favorite of recipe.userFavorite">
-                <div *ngIf="(idUserLogged != favorite) && (recipe.userFavorite.lastIndexOf(favorite) + 1 == recipe.userFavorite.length)">
+
+
+
+                <div *ngIf="!recipe.userFavorite">
                     <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i></li>
                 </div>
+            </div>-->
+
+            <div *ngFor="let favorite of recipe.userFavorite">
+                <p>{{recipe.userFavorite.lastIndexOf(favorite)}}</p>
+                <p>{{recipe.userFavorite.length }}</p>
+                <li class="list-group-item" *ngIf="idUserLogged == favorite; else noFavorite"><i id="{{recipe.id}}" class="fas fa-bookmark">{{recipe.userFavorite.length}}</i></li>
+                <ng-template #noFavorite>
+                    <div *ngIf="( favorite) && (recipe.userFavorite.lastIndexOf(favorite) + 1 == recipe.userFavorite.length)">
+                        <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i>{{recipe.userFavorite.length}}</li>
+                    </div>
+                </ng-template>
+            </div>
+            <div *ngIf="!recipe.userFavorite">
+                <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i>Ningú la té com a favorita</li>
             </div>
 
-            <div *ngIf="!recipe.userFavorite">
-                <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i></li>
-            </div>
+
+
         </ul>
         <div class="card-footer text-muted ">
             <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted ">({{recipe.userEmail}})</small></p>

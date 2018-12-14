@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 // Modules
 import { FormsModule } from '@angular/forms';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password'; // https://www.npmjs.com/package/ngx-show-hide-password
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -43,6 +44,7 @@ import { environment } from '../environments/environment';
 // Guard
 import { AuthGuard } from './guards/auth.guard';
 import { RecipesComponent } from './components/recipes/recipes.component';
+import { from } from 'rxjs';
 
 
 
@@ -69,6 +71,7 @@ import { RecipesComponent } from './components/recipes/recipes.component';
   imports: [
     BrowserModule,
     FormsModule,
+    ShowHidePasswordModule.forRoot(),
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,

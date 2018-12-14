@@ -17,8 +17,11 @@
 
                             <div class="form-group ">
                                 <label for="password">Contraseña</label>
-                                <input [(ngModel)]="password " type="password " id="password " name="password " class="form-control " placeholder="Contraseña " required>
+                                <show-hide-password size="sm" icon="fontawesome" btnStyle="primary" [btnOutline]="false">
+                                    <input [(ngModel)]="password" type="password" name="password" class="form-control" placeholder="Contraseña" id="password" required>
+                                </show-hide-password>
                             </div>
+
 
                             <div class="form-group no-margin">
                                 <button type="submit" class="btn btn-primary btn-block">Iniciar</button>

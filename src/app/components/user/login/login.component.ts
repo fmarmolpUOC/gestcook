@@ -38,8 +38,11 @@ export class LoginComponent implements OnInit {
       .catch((err) => {if (err.message === 'The email address is badly formatted.') {
         this.error = 'El formato del correo electrónico es incorrecto.';
       }
-      if ( err.message === 'The password is invalid or the user does not have a password.') {
+      else if ( err.message === 'The password is invalid or the user does not have a password.') {
         this. error = 'La contraseña no es válida o el usuario no tiene una contrasenya.';
+      }
+      else {
+        this.error = 'Este usuario no está registrado.';
       }
     });
   }
