@@ -45,6 +45,8 @@ import { environment } from '../environments/environment';
 import { AuthGuard } from './guards/auth.guard';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { from } from 'rxjs';
+import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
+import { PassresetComponent } from './components/user/passreset/passreset.component';
 
 
 
@@ -66,7 +68,9 @@ import { from } from 'rxjs';
     ProfileComponent,
     RegisterComponent,
     FavoritesComponent,
-    RecipesComponent
+    RecipesComponent,
+    EditprofileComponent,
+    PassresetComponent
   ],
   imports: [
     BrowserModule,

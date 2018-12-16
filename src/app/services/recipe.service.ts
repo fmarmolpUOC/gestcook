@@ -10,13 +10,30 @@ import {Observable} from 'rxjs/Observable';
 export class RecipeService {
   recipeCollection: AngularFirestoreCollection<RecipeInterface>;
   recipeDoc: AngularFirestoreDocument<RecipeInterface>;
+  recipeFavorite: AngularFirestoreCollection<RecipeInterface>;
   recipes: Observable<RecipeInterface[]>;
   recipe: Observable<RecipeInterface>;
 
+  favoriteCollection: AngularFirestoreCollection<RecipeInterface>;
+
     constructor(
-      private afs: AngularFirestore) {
+      private afs: AngularFirestore ) {
         this.recipeCollection = this.afs.collection('recipes', ref => ref.orderBy('publicationDate', 'desc')); // ordereds recipes
+        this.recipeFavorite = this.afs.collection('recipes').doc('recipes').collection('userFavorite');
       }
+
+  getFavorites(idRecipe: string) {
+    this.recipeDoc = this.afs.doc<RecipeInterface>(`recipes/${idRecipe}`);
+    this.recipe = this.recipeDoc.snapshotChanges().map(action => {
+      if (action.payload.exists === false) {
+        return null;
+      } else {
+        const data = action.payload.data() as RecipeInterface;
+        data.id = action.payload.id;
+        return data;
+      }
+    });
+  }
 
   // To add recipes into the collection of recipes
   addNewRecipe(recipe: RecipeInterface) {

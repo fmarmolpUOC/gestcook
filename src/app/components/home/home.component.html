@@ -52,16 +52,16 @@
 
             <div *ngFor="let favorite of recipe.userFavorite">
                 <p>{{recipe.userFavorite.lastIndexOf(favorite)}}</p>
-                <p>{{recipe.userFavorite.length }}</p>
-                <li class="list-group-item" *ngIf="idUserLogged == favorite; else noFavorite"><i id="{{recipe.id}}" class="fas fa-bookmark">{{recipe.userFavorite.length}}</i></li>
+                <p>{{recipe.userFavorite.length}} </p>
+                <li class="list-group-item" *ngIf="idUserLogged == favorite; else noFavorite"><i id="{{recipe.id}}" class="fas fa-bookmark">{{recipe.userFavorite.length + 1}} Usuaris la tenen com a favorita i un d'ells ets tu.</i></li>
                 <ng-template #noFavorite>
                     <div *ngIf="( favorite) && (recipe.userFavorite.lastIndexOf(favorite) + 1 == recipe.userFavorite.length)">
-                        <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i>{{recipe.userFavorite.length}}</li>
+                        <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i>{{recipe.userFavorite.length + 1}} Usuaris la tenen com a fovorita.</li>
                     </div>
                 </ng-template>
             </div>
             <div *ngIf="!recipe.userFavorite">
-                <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i>Ningú la té com a favorita</li>
+                <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i>Cap usuari la té com a favorita.</li>
             </div>
 
 

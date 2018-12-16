@@ -13,6 +13,8 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
+import { PassresetComponent } from './components/user/passreset/passreset.component';
 
 
 
@@ -26,9 +28,11 @@ const routes: Routes = [
   {path: 'newrecipe', component: NewrecipeComponent, canActivate: [AuthGuard]},
   {path: 'details/:id', component: DetailsComponent, canActivate: [AuthGuard]},
   {path: 'edit/:id', component: EditComponent, canActivate: [AuthGuard]},
+  {path: 'editprofile', component: EditprofileComponent, canActivate: [AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'passreset', component: PassresetComponent},
   {path: '**', component: Page404Component},
 ];
 

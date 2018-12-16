@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { UserInterface } from '../interfaces/user';
 import 'rxjs/add/operator/map';
 
 
@@ -12,15 +12,39 @@ import 'rxjs/add/operator/map';
 })
 export class AuthService {
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(
+    public afAuth: AngularFireAuth,
+    private afs: AngularFirestore
+    ) { }
 
-  registerUser(email: string, pass: string) {
+  /*registerUser(email: string, pass: string) {
     return new Promise((resolve, reject) => {
       this.afAuth.auth.createUserWithEmailAndPassword(email, pass)
         .then(userData => resolve(userData),
         err => reject(err));
     });
+  }*/
+
+  registerUser(email: string, password: string) {
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then(userData => {
+          resolve(userData),
+            this.updateUserData(userData.user)
+        }).catch(err => console.log(reject(err)))
+    });
   }
+
+  private updateUserData(user) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`gestcook/${user.uid}`);
+    const data: UserInterface = {
+      id: user.uid,
+      email: user.email,
+      photoUrl: user.photoURL
+    }
+    return userRef.set(data, { merge: true })
+  }
+
 
   loginEmailUser(email: string, pass: string) {
     return new Promise((resolve, reject) => {
@@ -40,6 +64,13 @@ export class AuthService {
 
   logout() {
     return this.afAuth.auth.signOut();
+  }
+
+  resetPassword(email: string) {
+    const auth = firebase.auth();
+    return auth.sendPasswordResetEmail(email)
+      .then(() => console.log('email sent'))
+      .catch((error) => console.log(error));
   }
 
 

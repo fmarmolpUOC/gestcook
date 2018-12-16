@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserInterface } from '../../../interfaces/user';
 
 
@@ -12,12 +13,21 @@ import { UserInterface } from '../../../interfaces/user';
 
 export class ProfileComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
-  user: UserInterface = {
-    name: '',
-    email: '',
-    photoUrl: ''
-  };
+  idUserLogged: string;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+    ) { }
+
+    user: UserInterface = {
+      id: '',
+      name: '',
+      email: '',
+      password: '',
+      photoUrl: ''
+    };
 
   public providerId: string = 'null';
 
