@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { AuthService } from '../../../services/auth.service';
 
@@ -14,6 +15,7 @@ export class PassresetComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private router: Router,
   ) { }
 
   public email: string = '';
@@ -41,7 +43,10 @@ export class PassresetComponent implements OnInit {
 resetPassword() {
   const auth = firebase.auth();
   return auth.sendPasswordResetEmail(this.email)
-    .then(() => console.log('email sent'))
+    .then(() => {
+      this.passReset = true;
+      this.error = '';
+    })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -50,6 +55,9 @@ resetPassword() {
       }
       if (errorMessage === 'The email address is badly formatted.') {
         this.error = 'El formato del correo electrónico es incorrecto.';
+      }
+      if (!errorMessage) {
+        this.error = '';
       }
       console.log(error);
       console.log(errorCode);
