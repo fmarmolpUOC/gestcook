@@ -12,3 +12,10 @@ img {
         width: 100%;
     }
 }
+
+.imgProfile {
+    width: 25px;
+    height: 25px;
+    display: inline;
+    margin-right: 0.5em;
+}

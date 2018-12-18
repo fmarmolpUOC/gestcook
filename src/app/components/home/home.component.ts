@@ -6,6 +6,9 @@ import { AuthService } from '../../services/auth.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
+import { UserInterface } from '../../interfaces/user';
+import { auth } from 'firebase/app';
+
 
 
 
@@ -31,6 +34,14 @@ export class HomeComponent implements OnInit {
     userFavorite: Array[''],
   };
 
+  user: UserInterface = {
+    id: '',
+  name: '',
+  email: '',
+  password: '',
+  photoUrl: '',
+  };
+
   idRecipe: string;
   idUser: string;
   idUserLogged: string;
@@ -53,6 +64,7 @@ export class HomeComponent implements OnInit {
     this.allRecipes();
   }
 
+
   isUserLogged() {
     this.authService.getAuth().subscribe( user => {
       if (user) {
@@ -68,6 +80,7 @@ export class HomeComponent implements OnInit {
   allRecipes() {
     this.recipeService.getAllRecipes().subscribe(recipes => this.recipes = recipes);
   }
+
 
   /*addOnFavorites(event) {
     const id: string = (event.target as Element).id;

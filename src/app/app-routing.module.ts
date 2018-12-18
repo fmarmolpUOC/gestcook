@@ -15,6 +15,7 @@ import { LoginComponent } from './components/user/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
 import { PassresetComponent } from './components/user/passreset/passreset.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'edit/:id', component: EditComponent, canActivate: [AuthGuard]},
   {path: 'editprofile', component: EditprofileComponent, canActivate: [AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'menu', component: MenuComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'passreset', component: PassresetComponent},

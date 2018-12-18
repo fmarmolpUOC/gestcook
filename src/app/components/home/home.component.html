@@ -68,7 +68,10 @@
 
         </ul>
         <div class="card-footer text-muted ">
-            <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted ">({{recipe.userEmail}})</small></p>
+            <p>
+                <img src="..\assets\userProfile.png" class=" imgProfile rounded-circle img-thumbnail" alt="profile image">{{recipe.userEmail}}
+                <small class="text-muted ">({{recipe.publicationDate | date: 'dd/MM/yy'}})</small>
+            </p>
         </div>
     </div>
 </div>

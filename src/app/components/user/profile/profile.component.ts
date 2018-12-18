@@ -42,6 +42,7 @@ export class ProfileComponent implements OnInit {
         this.user.email = user.email;
         this.user.photoUrl = user.photoURL;
         this.providerId = user.providerData[0].providerId;
+        console.log(this.user.photoUrl);
       }
     });
   }

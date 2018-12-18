@@ -44,7 +44,6 @@ export class EditprofileComponent implements OnInit {
 
   ngOnInit() {
     this.onComprobarUserLogin();
-    //this.onaddUser();
   }
 
   onComprobarUserLogin() {
@@ -112,24 +111,5 @@ export class EditprofileComponent implements OnInit {
     };
   }
 }
-
-  onaddUser() {
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-         // user = firebase.auth().currentUser;
-
-        user.updateProfile({
-          displayName: 'User',
-          photoURL: this.inputImageUser.nativeElement.value
-        }).then(function() {
-          this.router.navigate(['/profile']);
-        }).catch(function(error) {
-          // An error happened.
-        });
-      } else {
-          // No user is signed in.
-        }
-      });
-    }
 
 }

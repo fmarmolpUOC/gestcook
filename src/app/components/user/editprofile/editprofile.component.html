@@ -15,7 +15,7 @@
                 <div class="card ">
                     <div class="card-body">
 
-                        <form #formRegister="ngForm" (submit)="onAddUser(formGuardar)">
+                        <form #formRegister="ngForm" (submit)="onClickUpdate(formGuardar)">
                             <h4 class="card-title" *ngIf="!IsError">Editar perfil</h4>
                             <div class="alert alert-dismissible alert-danger" role="alert" *ngIf="error ">{{error}}</div>
                             <!--
@@ -32,7 +32,7 @@
                             </div>
                             -->
                             <div class="form-group">
-                                <h5>Imagen perfil:{{urlImage}}{{user.photoUrl}}</h5>
+                                <h5>Imagen perfil:{{user.photoUrl}}</h5>
                                 <img *ngIf="urlImage | async; else actualImage" [src]="url" height="200">
                                 <input type="file" accept=".png, .jpg" (change)=" onUpload($event); onSelectFile($event)">
                                 <ng-template #actualImage>

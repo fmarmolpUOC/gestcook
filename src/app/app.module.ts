@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { from } from 'rxjs';
 
 // Modules
 import { FormsModule } from '@angular/forms';
@@ -24,6 +25,11 @@ import { LoginComponent } from './components/user/login/login.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { RecipesComponent } from './components/recipes/recipes.component';
+import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
+import { PassresetComponent } from './components/user/passreset/passreset.component';
+import { MenuComponent } from './components/menu/menu.component';
+
 
 // Firebase
 import { AngularFireModule } from 'angularfire2';
@@ -43,10 +49,7 @@ import { environment } from '../environments/environment';
 
 // Guard
 import { AuthGuard } from './guards/auth.guard';
-import { RecipesComponent } from './components/recipes/recipes.component';
-import { from } from 'rxjs';
-import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
-import { PassresetComponent } from './components/user/passreset/passreset.component';
+
 
 
 
@@ -70,7 +73,8 @@ import { PassresetComponent } from './components/user/passreset/passreset.compon
     FavoritesComponent,
     RecipesComponent,
     EditprofileComponent,
-    PassresetComponent
+    PassresetComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
