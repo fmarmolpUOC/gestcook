@@ -15,8 +15,9 @@
                 <div class="card ">
                     <div class="card-body">
 
-                        <form #formRegister="ngForm" (submit)="onClickUpdate(formGuardar)">
-                            <h4 class="card-title" *ngIf="!IsError">Editar perfil</h4>
+                        <form #formRegister="ngForm" (submit)="onClickUpdate(formRegister)">
+                            <h4 class="card-title">Editar perfil de usuario</h4>
+                            <small>({{usr.email}})</small>
                             <div class="alert alert-dismissible alert-danger" role="alert" *ngIf="error ">{{error}}</div>
                             <!--
                             <div class="form-group">
@@ -32,11 +33,13 @@
                             </div>
                             -->
                             <div class="form-group">
-                                <h5>Imagen perfil:{{user.photoUrl}}</h5>
-                                <img *ngIf="urlImage | async; else actualImage" [src]="url" height="200">
+                                <br>
+                                <h5>Imagen perfil:</h5>
+                                <img class="imgProfile" *ngIf="urlImage | async; else actualImage" [src]="url">
+                                <br>
                                 <input type="file" accept=".png, .jpg" (change)=" onUpload($event); onSelectFile($event)">
                                 <ng-template #actualImage>
-                                    <img src="{{user.photoUrl}}" alt="Card image">
+                                    <img class="imgProfile" src="{{usr.photoUrl}}" alt="Card image">
                                 </ng-template>
                             </div>
                             <div class="progress">
@@ -50,8 +53,49 @@
                             </div>
                             <input #imageUser *ngIf="urlImage | async; else sameImage" type="hidden" [value]="urlImage | async">
                             <ng-template #sameImage>
-                                <input #imageUser type="hidden" [value]="user.photoUrl">
+                                <input #imageUser type="hidden" [value]="usr.photoUrl">
                             </ng-template>
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <label for="titulo"><h5>Nombre</h5></label>
+                                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="usr.name">
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="titulo"><h5>Apellidos</h5></label>
+                                    <input type="text" class="form-control" id="surname" name="surname" [(ngModel)]="usr.surname">
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="titulo"><h5>Calle</h5></label>
+                                    <input type="text" class="form-control" id="street" name="street" [(ngModel)]="usr.street">
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="titulo"><h5>Número</h5></label>
+                                    <input type="text" class="form-control" id="number" name="number" [(ngModel)]="usr.number">
+
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="titulo"><h5>Código Postal</h5></label>
+                                    <input type="text" class="form-control" id="cp" name="cp" [(ngModel)]="usr.cp">
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="titulo"><h5>Población</h5></label>
+                                    <input type="text" class="form-control" id="town" name="town" [(ngModel)]="usr.town">
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="titulo"><h5>Provincia</h5></label>
+                                    <input type="text" class="form-control" id="province" name="province" [(ngModel)]="usr.province">
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="titulo"><h5>País</h5></label>
+                                    <input type="text" class="form-control" id="state" name="state" [(ngModel)]="usr.state">
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="titulo"><h5>Teléfono</h5></label>
+                                    <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="usr.phone">
+                                </li>
+                            </ul>
+
                             <input type="submit" value="Modificar" class="btn btn-primary btn-block">
 
                         </form>

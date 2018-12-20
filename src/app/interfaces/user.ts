@@ -10,6 +10,7 @@ export interface UserInterface {
   cp?: string;
   town?: string;
   province?: string;
-  estate?: 'España';
+  state?: 'España';
+  phone?: string;
 
 }

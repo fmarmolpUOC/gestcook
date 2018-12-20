@@ -26,3 +26,8 @@ li.big.active:hover {
     font-size: 1.5em;
     transform: rotate(0deg);
 }
+
+.imgProfile {
+    height: 25px;
+    width: 25px;
+}

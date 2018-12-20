@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { RecipeInterface } from '../../interfaces/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
@@ -8,7 +8,7 @@ import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { UserInterface } from '../../interfaces/user';
 import { auth } from 'firebase/app';
-
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -42,6 +42,22 @@ export class HomeComponent implements OnInit {
   photoUrl: '',
   };
 
+  usr: UserInterface = {
+    id: '',
+    email: '',
+    password: '',
+    photoUrl: '',
+    name: '',
+    surname: '',
+    street: '',
+    number: '',
+    cp: '',
+    town: '',
+    province: '',
+    state: 'España',
+    phone: '',
+  };
+
   idRecipe: string;
   idUser: string;
   idUserLogged: string;
@@ -59,7 +75,8 @@ export class HomeComponent implements OnInit {
 
   searchText: string = '';
 
-  ngOnInit() {
+
+  ngOnInit(){
     this.isUserLogged();
     this.allRecipes();
   }
@@ -72,6 +89,11 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  /*getUserDetails(id: string) {
+    this.authService.getOneUser(id).subscribe(usr => this.usr = usr);
+    console.log('Id: ', this.id);
+  }*/
 
   filterCondition(recipe) {
     return recipe.title.toLowerCase().indexOf(this.searchText.toLowerCase()) !== -1;

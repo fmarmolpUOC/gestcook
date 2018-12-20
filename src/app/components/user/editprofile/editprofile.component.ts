@@ -17,12 +17,38 @@ import { auth } from 'firebase/app';
 })
 export class EditprofileComponent implements OnInit {
 
-  user: UserInterface = {
+  idUserLogged: string;
+
+    user: UserInterface = {
+      id: '',
+      email: '',
+      password: '',
+      photoUrl: '',
+      name: '',
+      surname: '',
+      street: '',
+      number: '',
+      cp: '',
+      town: '',
+      province: '',
+      state: 'España',
+      phone: '',
+    };
+  
+  usr: UserInterface = {
     id: '',
-    name: '',
     email: '',
     password: '',
-    photoUrl: ''
+    photoUrl: '',
+    name: '',
+    surname: '',
+    street: '',
+    number: '',
+    cp: '',
+    town: '',
+    province: '',
+    state: 'España',
+    phone: '',
   };
 
   constructor(
@@ -49,45 +75,17 @@ export class EditprofileComponent implements OnInit {
   onComprobarUserLogin() {
     this.authService.getAuth().subscribe( user => {
       if (user) {
+        this.user.id = user.uid;
         this.user.name = user.displayName;
         this.user.email = user.email;
         this.user.photoUrl = user.photoURL;
         this.providerId = user.providerData[0].providerId;
+        this.idUserLogged = user.uid;
+        console.log('UID: ', this.idUserLogged);
+        this.getUserDetails();
       }
     });
   }
-
-  /*onAddUser(): void {
-    this.authService.registerUser(this.email, this.password)
-      .then((res) => {
-        this.authService.getAuth().subscribe(user => {
-          if (user) {
-            console.log(user.email);
-             user.updateProfile({
-               displayName: '',
-               photoURL: this.inputImageUser.nativeElement.value
-             });
-            }
-          });  // .then(() => {
-              this.router.navigate(['/home']);
-            })
-            // .catch((error) => console.log('error', error));
-            .catch((err) => {
-              if (err.message === 'The email address is badly formatted.') {
-                this.error = 'El formato del correo electrónico es incorrecto.';
-              }
-              if ( err.message === 'The password must be 6 characters long or more.') {
-                this. error = 'La contraseña debe contener mínimo 6 caracteres.';
-              }
-              if ( err.message === 'Password should be at least 6 characters') {
-                this. error = 'La contraseña debe contener mínimo 6 caracteres.';
-              }
-              if ( err.message === 'The email address is already in use by another account.') {
-                this. error = 'El correo electrónico está siendo usado.';
-              }
-              console.log(err);
-            });
-            // })*/
 
   onUpload(e) {
    // console.log('subir', e.target.files[0]);
@@ -110,6 +108,18 @@ export class EditprofileComponent implements OnInit {
       this.url = event.target.result;
     };
   }
+}
+
+onClickUpdate({value}: {value: UserInterface}) {
+  value.id = this.idUserLogged;
+  value.photoUrl = this.inputImageUser.nativeElement.value;
+  this.authService.updateUser(value);
+  this.router.navigate(['/profile/']);
+}
+
+getUserDetails() {
+  this.authService.getOneUser(this.idUserLogged).subscribe(usr => this.usr = usr);
+  console.log('Usr:', this.usr);
 }
 
 }

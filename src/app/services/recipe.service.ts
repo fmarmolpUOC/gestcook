@@ -67,6 +67,7 @@ return this.recipes;
    this.recipeDoc = this.afs.doc(`recipes/${recipe.id}`);
    this.recipeDoc.update(recipe);
  }
+ 
  deleteRecipe(recipe: RecipeInterface) {
   this.recipeDoc = this.afs.doc(`recipes/${recipe.id}`);
   this.recipeDoc.delete();
