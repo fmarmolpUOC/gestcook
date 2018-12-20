@@ -144,5 +144,16 @@ export class AuthService {
     return this.afAuth.auth.signOut();
   }
 
+  getAllUsers(): Observable<UserInterface[]> {
+    this.users = this.userCollection.snapshotChanges()
+      .map(changes => {
+        return changes.map(action => {
+          const data = action.payload.doc.data() as UserInterface;
+          data.id = action.payload.doc.id;
+          return data;
+        });
+    });
+  return this.users;
+ }
 
 }

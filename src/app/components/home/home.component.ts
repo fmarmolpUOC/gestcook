@@ -42,6 +42,8 @@ export class HomeComponent implements OnInit {
   photoUrl: '',
   };
 
+  users: UserInterface[];
+
   usr: UserInterface = {
     id: '',
     email: '',
@@ -76,9 +78,10 @@ export class HomeComponent implements OnInit {
   searchText: string = '';
 
 
-  ngOnInit(){
+  ngOnInit() {
     this.isUserLogged();
     this.allRecipes();
+    this.allUsers();
   }
 
 
@@ -101,6 +104,10 @@ export class HomeComponent implements OnInit {
 
   allRecipes() {
     this.recipeService.getAllRecipes().subscribe(recipes => this.recipes = recipes);
+  }
+
+  allUsers() {
+    this.authService.getAllUsers().subscribe(users => this.users = users);
   }
 
 

@@ -68,10 +68,13 @@
 
         </ul>
         <div class="card-footer text-muted ">
-            <p>
-                <img class="imgProfile rounded-circle img-thumbnail" src="{{usr.photoUrl}}" alt="profile image"> {{recipe.userEmail}}
-                <small class="text-muted ">({{recipe.publicationDate | date: 'dd/MM/yy'}})</small>
-            </p>
+            <div *ngFor="let user of users">
+                <div *ngIf="user.email === recipe.userEmail">
+                    <img *ngIf="user.photoUrl, else noProfile" class="imgProfile rounded-circle img-thumbnail" src="{{user.photoUrl}}" alt="profile image">
+                    <ng-template #noProfile><img class="imgProfile rounded-circle img-thumbnail" src="\assets\userProfile.png" alt="profile image"></ng-template>
+                </div>
+            </div>
+            <small class=" text-muted ">{{recipe.userEmail}} ({{recipe.publicationDate | date: 'dd/MM/yy'}})</small>
         </div>
     </div>
 </div>
