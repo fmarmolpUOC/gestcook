@@ -11,6 +11,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
+
+
 // Components
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -36,7 +38,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
-
 import { AuthService } from './services/auth.service';
 import { RecipeService } from './services/recipe.service';
 
@@ -49,6 +50,8 @@ import { environment } from '../environments/environment';
 
 // Guard
 import { AuthGuard } from './guards/auth.guard';
+import { DetailsFavoritesComponent } from './components/details-favorites/details-favorites.component';
+import { DetailsRecipesComponent } from './components/details-recipes/details-recipes.component';
 
 
 
@@ -74,7 +77,9 @@ import { AuthGuard } from './guards/auth.guard';
     RecipesComponent,
     EditprofileComponent,
     PassresetComponent,
-    MenuComponent
+    MenuComponent,
+    DetailsFavoritesComponent,
+    DetailsRecipesComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +93,7 @@ import { AuthGuard } from './guards/auth.guard';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule
+
 
   ],
   providers: [

@@ -2,6 +2,7 @@
     <app-navbar></app-navbar>
 </div>
 
+
 <div class="row">
     <div class="col-md-6"></div>
     <div class="col-md-6">
@@ -22,62 +23,42 @@
 </div>
 
 <div *ngFor="let recipe of recipes">
-    <div class="card border-primary mb-3" *ngIf="idUserLogged != recipe.userId && filterCondition(recipe)">
-        <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
-        <img src="{{recipe.imageUrl}}" alt="Card image">
-        <div class="card-body">
-            <p class="card-text">{{recipe.description}}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a href="/details/{{recipe.id}} " class="card-link ">Leer más</a></li>
-            <!-- <div *ngIf="recipe.userFavorite">
-                <p>{{recipe.userFavorite.length}}</p>
-                <div *ngFor="let favorite of recipe.userFavorite">
-                    <li class="list-group-item" *ngIf="idUserLogged == favorite; else noFavorite"><i id="{{recipe.id}}" class="fas fa-bookmark">{{recipe.userFavorite.length}}</i></li>
-                    <ng-template #noFavorite>
+    <div *ngIf="idUserLogged != recipe.userId &&filterCondition(recipe)">
+        <div id="{{recipe.id}}" class="card border-primary mb-3">
+            <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
+            <img src="{{recipe.imageUrl}}" alt="Card image">
+            <div class="card-body">
+                <p class="card-text">{{recipe.description}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
 
-                        <div *ngIf=" (favorite.lastIndexOf(recipe.userFavorite) +1 == recipe.userFavorite.length)">
-                            <li class="list-group-item">Esta a favorits, però no d'aquest usuari{{recipe.userFavorite.lastIndexOf(favorite)+1}}{{recipe.userFavorite.length}}<i id="{{recipe.id}}" class="far fa-bookmark"></i></li>
+                <li class="list-group-item"><a href="/details/{{recipe.id}} " class="card-link ">Leer más</a></li>
+                <input hidden id="{{recipe.id}}">
 
-                        </div>
-                    </ng-template>
-                </div>
+                <li style="display: inline-block;" class="list-group-item">
+                    <button class="btn btn-outline-light" type="button" class="btn-primary" id="{{recipe.id}}" (click)="onClickAddFavorite($event)">favorita +
+                    </button>
+                    <span *ngFor="let favorite of favorites">
+                        <span *ngIf="recipe.id === favorite.recip">
+                                <a class="favorite" href="/favorites"><i [hidden]="hideme[recipe.id]" class="fas fa-bookmark"></i></a>
+                        </span>
+                    </span>
+                </li>
 
-
-
-                <div *ngIf="!recipe.userFavorite">
-                    <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i></li>
-                </div>
-            </div>-->
-
-            <div *ngFor="let favorite of recipe.userFavorite">
-                <p>{{recipe.userFavorite.lastIndexOf(favorite)}}</p>
-                <p>{{recipe.userFavorite.length}} </p>
-                <li class="list-group-item" *ngIf="idUserLogged == favorite; else noFavorite"><i id="{{recipe.id}}" class="fas fa-bookmark">{{recipe.userFavorite.length + 1}} Usuaris la tenen com a favorita i un d'ells ets tu.</i></li>
-                <ng-template #noFavorite>
-                    <div *ngIf="( favorite) && (recipe.userFavorite.lastIndexOf(favorite) + 1 == recipe.userFavorite.length)">
-                        <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i>{{recipe.userFavorite.length + 1}} Usuaris la tenen com a fovorita.</li>
+            </ul>
+            <div class="card-footer text-muted ">
+                <div *ngFor="let user of users">
+                    <div *ngIf="user.email === recipe.userEmail">
+                        <img *ngIf="user.photoUrl, else noProfile" class="imgProfile rounded-circle img-thumbnail" src="{{user.photoUrl}}" alt="profile image">
+                        <ng-template #noProfile><img class="imgProfile rounded-circle img-thumbnail" src="\assets\userProfile.png" alt="profile image"></ng-template>
                     </div>
-                </ng-template>
-            </div>
-            <div *ngIf="!recipe.userFavorite">
-                <li class="list-group-item"><i id="{{recipe.id}}" class="far fa-bookmark"></i>Cap usuari la té com a favorita.</li>
-            </div>
-
-
-
-        </ul>
-        <div class="card-footer text-muted ">
-            <div *ngFor="let user of users">
-                <div *ngIf="user.email === recipe.userEmail">
-                    <img *ngIf="user.photoUrl, else noProfile" class="imgProfile rounded-circle img-thumbnail" src="{{user.photoUrl}}" alt="profile image">
-                    <ng-template #noProfile><img class="imgProfile rounded-circle img-thumbnail" src="\assets\userProfile.png" alt="profile image"></ng-template>
                 </div>
+                <small class=" text-muted ">{{recipe.userEmail}} ({{recipe.publicationDate | date: 'dd/MM/yy'}})</small>
             </div>
-            <small class=" text-muted ">{{recipe.userEmail}} ({{recipe.publicationDate | date: 'dd/MM/yy'}})</small>
         </div>
     </div>
 </div>
+
 
 <div class="container ">
     <router-outlet></router-outlet>

@@ -67,7 +67,7 @@ export class NavbarComponent implements OnInit {
         this.user.photoUrl = user.photoURL;
         this.providerId = user.providerData[0].providerId;
         this.idUserLogged = user.uid;
-        console.log('UID: ', this.idUserLogged);
+        // console.log('UID: ', this.idUserLogged);
         this.getUserDetails();
       }
     });
@@ -84,7 +84,7 @@ export class NavbarComponent implements OnInit {
 
   getUserDetails() {
     this.authService.getOneUser(this.idUserLogged).subscribe(usr => this.usr = usr);
-    console.log('Usr:', this.usr);
+    // console.log('Usr:', this.usr);
   }
 
   onLogout() {

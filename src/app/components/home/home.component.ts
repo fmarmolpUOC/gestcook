@@ -9,6 +9,9 @@ import { Observable } from 'rxjs/Observable';
 import { UserInterface } from '../../interfaces/user';
 import { auth } from 'firebase/app';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { FavoriteInterface } from '../../interfaces/favorite';
+import { FavoriteService } from '../../services/favorite.service';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 
 
@@ -17,9 +20,12 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
 export class HomeComponent implements OnInit {
 
   recipes: RecipeInterface[];
+  favorites: FavoriteInterface[];
 
   recipe: RecipeInterface = {
     id: '',
@@ -61,27 +67,44 @@ export class HomeComponent implements OnInit {
   };
 
   idRecipe: string;
-  idUser: string;
   idUserLogged: string;
   id: string;
   us: string;
-  count = 0;
+  sIndex: number = null;
+
+  hideme = {};
+
+  favoritesUser: FavoriteInterface = {
+    recip: '',
+    us: '',
+    publicationAdded: '',
+  };
+
 
   constructor(
     private recipeService: RecipeService,
+    private favoriteService: FavoriteService,
     private authService: AuthService,
     private router: Router,
     private storage: AngularFireStorage,
-    private route: ActivatedRoute
-    ) { }
+    private route: ActivatedRoute,
+    private afs: AngularFirestore,
+    ) {
+      this.hideme = {};
+    }
 
   searchText: string = '';
+
+  public show: boolean = false;
+  public buttonName: any = 'Show';
 
 
   ngOnInit() {
     this.isUserLogged();
     this.allRecipes();
     this.allUsers();
+    this.allFavorites();
+
   }
 
 
@@ -92,11 +115,6 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
-  /*getUserDetails(id: string) {
-    this.authService.getOneUser(id).subscribe(usr => this.usr = usr);
-    console.log('Id: ', this.id);
-  }*/
 
   filterCondition(recipe) {
     return recipe.title.toLowerCase().indexOf(this.searchText.toLowerCase()) !== -1;
@@ -110,17 +128,30 @@ export class HomeComponent implements OnInit {
     this.authService.getAllUsers().subscribe(users => this.users = users);
   }
 
+  allFavorites() {
+    this.authService.getAuth().subscribe( user => {
+      if (user) {
+        this.idUserLogged = user.uid;
+        this.favoriteService.getAllFavorites(this.idUserLogged).subscribe(favorites => this.favorites = favorites);
+      }
+    });
+ }
 
-  /*addOnFavorites(event) {
-    const id: string = (event.target as Element).id;
-    const us = this.idUserLogged;
-    this.count =  1;
-    console.log(id, us);
+  onClickAddFavorite(event) {
+    this.idRecipe = (event.target as Element).id;
+    this.authService.getAuth().subscribe( user => {
+      if (user) {
+        this.favoritesUser.recip = this.idRecipe;
+        this.idUserLogged = user.uid;
+        this.favoritesUser.us = this.idUserLogged;
+        this.favoritesUser.publicationAdded = (new Date()).getTime();
+        console.log(this.favoritesUser.recip);
+        console.log(this.favoritesUser.us);
+        this.afs.collection(this.idUserLogged).doc(this.idRecipe).set(this.favoritesUser);
+      }
+    });
+    this.router.navigate(['/favorites']);
   }
 
-  deleteOnFavorites(event) {
-    this.count =  0;
-    // console.log(this.count);
-  }*/
 
 }

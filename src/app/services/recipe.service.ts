@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { RecipeInterface } from '../interfaces/recipe';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import {Observable} from 'rxjs/Observable';
+import * as firebase from 'firebase/app';
+
+
 
 
 @Injectable({
@@ -12,8 +15,6 @@ export class RecipeService {
   recipeDoc: AngularFirestoreDocument<RecipeInterface>;
   recipes: Observable<RecipeInterface[]>;
   recipe: Observable<RecipeInterface>;
-
-  favoriteCollection: AngularFirestoreCollection<RecipeInterface>;
 
     constructor(
       private afs: AngularFirestore ) {
@@ -67,7 +68,7 @@ return this.recipes;
    this.recipeDoc = this.afs.doc(`recipes/${recipe.id}`);
    this.recipeDoc.update(recipe);
  }
- 
+
  deleteRecipe(recipe: RecipeInterface) {
   this.recipeDoc = this.afs.doc(`recipes/${recipe.id}`);
   this.recipeDoc.delete();

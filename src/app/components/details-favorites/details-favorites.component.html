@@ -1,13 +1,8 @@
 <div class="row">
     <div class="col-md-6">
-        <a *ngIf="idUserLogged == recipe.userEmail; else backHome" routerLink="/recipes" class="btn btn-link">
+        <a routerLink="/favorites" class="btn btn-link">
             <i class="fa fa-arrow-circle-o-left"></i>Atrás
         </a>
-        <ng-template #backHome>
-            <a routerLink="/home" class="btn btn-link">
-                <i class="fa fa-arrow-circle-o-left"></i>Atrás
-            </a>
-        </ng-template>
     </div>
     <div class="col-md-6"></div>
 </div>
@@ -28,17 +23,9 @@
             <p class="card-text">{{recipe.ingredients}}</p>
         </li>
 
-        <!--
         <li style="display: inline-block;" class="list-group-item">
-            <button class="btn btn-outline-light" type="button" class="btn-primary" id="{{recipe.id}}" (click)="onClickAddFavorite($event)">favorita +
-                </button>
-            <span *ngFor="let favorite of favorites">
-                    <span *ngIf="recipe.id === favorite.recip">
-                            <a class="favorite" href="/favorites"><i [hidden]="hideme[recipe.id]" class="fas fa-bookmark"></i></a>
-                    </span>
-            </span>
+            <button class="btn btn-outline-light" type="button" class="btn-primary" id="{{recipe.id}}" (click)="onClickDeleteFavorite($event)">favorita -</button>
         </li>
-        -->
 
     </ul>
     <div class="card-body" *ngIf=" idUserLogged == recipe.userEmail || idUserLogged =='gestcook.0@gmail.com' ">

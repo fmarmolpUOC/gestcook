@@ -31,9 +31,14 @@
         <div class="card-body">
             <p class="card-text">{{recipe.description}}</p>
         </div>
-        <div class="card-body">
-            <a href="/details/{{recipe.id}} " class="card-link ">Leer más</a>
-        </div>
+
+        <ul class="list-group list-group-flush">
+
+            <li class="list-group-item"><a href="/details_recipes/{{recipe.id}} " class="card-link ">Leer más</a></li>
+            <input hidden id="{{recipe.id}}">
+
+        </ul>
+
         <div class="card-footer text-muted">
             <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted ">({{recipe.userEmail}})</small></p>
         </div>

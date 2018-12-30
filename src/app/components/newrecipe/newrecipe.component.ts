@@ -63,6 +63,7 @@ export class NewrecipeComponent implements OnInit {
       value.userId = user.uid;
       value.userEmail = user.email;
       value.imageUrl = this.inputImageRecipe.nativeElement.value;
+      value.id = this.recipe.id;
       // value.imageUrl = this.urlImage;
       this.recipeService.addNewRecipe(value);
     });

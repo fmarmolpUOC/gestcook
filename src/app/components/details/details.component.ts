@@ -4,6 +4,9 @@ import { RecipeInterface } from '../../interfaces/recipe';
 import { RecipeService } from '../../services/recipe.service';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs/Observable';
+import { FavoriteInterface } from '../../interfaces/favorite';
+import { FavoriteService } from '../../services/favorite.service';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 
 @Component({
@@ -15,6 +18,11 @@ export class DetailsComponent implements OnInit {
 
   idRecipe: string;
   idUserLogged: string;
+  idUser: string;
+  count = 0;
+  id: string;
+
+  favorites: FavoriteInterface[];
 
   recipe: RecipeInterface = {
     id: '',
@@ -28,22 +36,36 @@ export class DetailsComponent implements OnInit {
     imageUrl: ''
   };
 
+  favoritesUser: FavoriteInterface = {
+    recip: '',
+    us: '',
+    publicationAdded: '',
+  };
+
+  hideme = {};
+
   constructor(
     private recipeService: RecipeService,
+    private favoriteService: FavoriteService,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
-    ) { }
+    private route: ActivatedRoute,
+    private afs: AngularFirestore,
+    ) { 
+      this.hideme = {};
+    }
 
   ngOnInit() {
     this.isUserLogged();
     this.getRecipeDetails();
+    this.allFavorites();
   }
 
   isUserLogged() {
     this.authService.getAuth().subscribe( user => {
       if (user) {
         this.idUserLogged = user.email;
+        this.idUser = user.uid;
       }
     });
   }
@@ -59,5 +81,32 @@ export class DetailsComponent implements OnInit {
       this.router.navigate(['/home']);
     }
   }
+
+  allFavorites() {
+    this.authService.getAuth().subscribe( user => {
+      if (user) {
+        this.idUserLogged = user.uid;
+        this.favoriteService.getAllFavorites(this.idUserLogged).subscribe(favorites => this.favorites = favorites);
+      }
+    });
+ }
+
+ onClickAddFavorite(event) {
+  this.idRecipe = (event.target as Element).id;
+  this.authService.getAuth().subscribe( user => {
+    if (user) {
+      this.favoritesUser.recip = this.idRecipe;
+      this.idUserLogged = user.uid;
+      this.favoritesUser.us = this.idUserLogged;
+      this.favoritesUser.publicationAdded = (new Date()).getTime();
+      console.log(this.favoritesUser.recip);
+      console.log(this.favoritesUser.us);
+      this.afs.collection(this.idUserLogged).doc(this.idRecipe).set(this.favoritesUser);
+    }
+  });
+  this.router.navigate(['/favorites']);
+}
+
+
 
 }

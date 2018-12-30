@@ -24,3 +24,12 @@
         display: inline-flex;
         padding-top: 10px;
     }
+    
+    [hidden] {
+        display: none !important;
+    }
+    
+    .fa-bookmark {
+        margin-left: 0.5em;
+        color: coral;
+    }
