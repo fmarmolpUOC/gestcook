@@ -44,6 +44,7 @@ export class NewrecipeComponent implements OnInit {
   urlImage: Observable<string>;
 
   ngOnInit() {
+    console.log(new Date().getTime());
   }
 
   onUpload(e) {

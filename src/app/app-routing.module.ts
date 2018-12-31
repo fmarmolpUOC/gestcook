@@ -18,7 +18,9 @@ import { AuthGuard } from './guards/auth.guard';
 import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
 import { PassresetComponent } from './components/user/passreset/passreset.component';
 import { MenuComponent } from './components/menu/menu.component';
-
+import { MenuFavoritesComponent } from './components/menu-favorites/menu-favorites.component';
+import { MenuRecipesComponent } from './components/menu-recipes/menu-recipes.component';
+import { MenuDateComponent } from './components/menu-date/menu-date.component';
 
 
 
@@ -34,9 +36,12 @@ const routes: Routes = [
   {path: 'details_favorites/:id', component: DetailsFavoritesComponent, canActivate: [AuthGuard]},
   {path: 'details_recipes/:id', component: DetailsRecipesComponent, canActivate: [AuthGuard]},
   {path: 'edit/:id', component: EditComponent, canActivate: [AuthGuard]},
+  {path: 'menu_favorites/:id', component: MenuFavoritesComponent, canActivate: [AuthGuard]},
+  {path: 'menu_recipes/:id', component: MenuRecipesComponent, canActivate: [AuthGuard]},
   {path: 'editprofile', component: EditprofileComponent, canActivate: [AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'menu', component: MenuComponent, canActivate: [AuthGuard]},
+  {path: 'menu_date/:id', component: MenuDateComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'passreset', component: PassresetComponent},

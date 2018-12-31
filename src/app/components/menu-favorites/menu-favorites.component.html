@@ -1,0 +1,52 @@
+<div class="container">
+    <app-navbar></app-navbar>
+</div>
+
+<div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-6">
+        <div class=" mb-3">
+            <form class="form-inline">
+                <input class="form-control" name="searchInput" placeholder="Buscar" #searchInput="ngModel" [(ngModel)]="searchText" style="width: 90%">
+                <i class="fas fa-search fa-2x" style="width: 10%; padding-left: 1%"></i>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron ">
+    <h1 class="display-3 ">Mis recetas favoritas</h1>
+    <p class="lead ">En esta sección tienes un espacio donde guardar tus recetas favoritas creadas por otros usuarios.</p>
+    <hr class="my-4 ">
+    <p>Busca entre tus recetas favoritas.</p>
+</div>
+
+<div *ngFor="let recipe of recipes">
+    <div *ngFor="let favorite of favorites">
+
+        <div class="card border-primary mb-3" *ngIf="recipe.id == favorite.recip && filterCondition(recipe)">
+            <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
+            <img src="{{recipe.imageUrl}}" alt="Card image">
+            <div class="card-body">
+                <p class="card-text">{{recipe.description}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+
+                <li class="list-group-item"><a href="/details_favorites/{{recipe.id}} " class="card-link ">Leer más</a></li>
+
+                <li style="display: inline-block;" class="list-group-item">
+                    <button class="btn btn-outline-light" type="button" class="btn-primary" id="{{recipe.id}}" (click)="addToMenu($event)">Añadir al menú</button>
+                </li>
+
+            </ul>
+            <div class="card-footer text-muted">
+                <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted ">({{recipe.userEmail}})</small></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container ">
+    <router-outlet></router-outlet>
+</div>

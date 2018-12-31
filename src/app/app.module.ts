@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 import { from } from 'rxjs';
 
 // Modules
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password'; // https://www.npmjs.com/package/ngx-show-hide-password
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+// import { DatePickerModule } from '@dannyboyng/datepicker';
+import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 
 
 
@@ -23,6 +25,8 @@ import { Page404Component } from './components/page404/page404.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { EditComponent } from './components/edit/edit.component';
 import { DetailsComponent } from './components/details/details.component';
+import { DetailsFavoritesComponent } from './components/details-favorites/details-favorites.component';
+import { DetailsRecipesComponent } from './components/details-recipes/details-recipes.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { RegisterComponent } from './components/user/register/register.component';
@@ -31,6 +35,9 @@ import { RecipesComponent } from './components/recipes/recipes.component';
 import { EditprofileComponent } from './components/user/editprofile/editprofile.component';
 import { PassresetComponent } from './components/user/passreset/passreset.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { MenuFavoritesComponent } from './components/menu-favorites/menu-favorites.component';
+import { MenuRecipesComponent } from './components/menu-recipes/menu-recipes.component';
+import { MenuDateComponent } from './components/menu-date/menu-date.component';
 
 
 // Firebase
@@ -50,11 +57,6 @@ import { environment } from '../environments/environment';
 
 // Guard
 import { AuthGuard } from './guards/auth.guard';
-import { DetailsFavoritesComponent } from './components/details-favorites/details-favorites.component';
-import { DetailsRecipesComponent } from './components/details-recipes/details-recipes.component';
-
-
-
 
 
 
@@ -79,11 +81,15 @@ import { DetailsRecipesComponent } from './components/details-recipes/details-re
     PassresetComponent,
     MenuComponent,
     DetailsFavoritesComponent,
-    DetailsRecipesComponent
+    DetailsRecipesComponent,
+    MenuFavoritesComponent,
+    MenuRecipesComponent,
+    MenuDateComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     ShowHidePasswordModule.forRoot(),
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
@@ -92,7 +98,8 @@ import { DetailsRecipesComponent } from './components/details-recipes/details-re
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    DatePickerModule
 
 
   ],

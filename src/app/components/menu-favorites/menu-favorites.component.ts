@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { RecipeInterface } from '../../interfaces/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { AuthService } from '../../services/auth.service';
@@ -11,11 +11,11 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 
 @Component({
-  selector: 'app-favorites',
-  templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.css']
+  selector: 'app-menu-favorites',
+  templateUrl: './menu-favorites.component.html',
+  styleUrls: ['./menu-favorites.component.css']
 })
-export class FavoritesComponent implements OnInit {
+export class MenuFavoritesComponent implements OnInit {
 
   recipes: RecipeInterface[];
   favorites: FavoriteInterface[];
@@ -33,13 +33,15 @@ export class FavoritesComponent implements OnInit {
     userFavorite: Array[''],
   };
 
-  favorite: FavoriteInterface = {
+  favoritesUser: FavoriteInterface = {
     recip: '',
     us: '',
+    publicationAdded: '',
   };
 
   idRecipe: string;
   idUser: string;
+  idDate: '';
   idUserLogged: string;
   id: string;
   us: string;
@@ -61,6 +63,13 @@ export class FavoritesComponent implements OnInit {
     this.isUserLogged();
     this.allRecipes();
     this.allFavorites();
+    this.getIdDate();
+  }
+
+  getIdDate() {
+    this.idDate = this.route.snapshot.params['id'];
+    console.log(this.idDate);
+
   }
 
   isUserLogged() {
@@ -88,15 +97,20 @@ export class FavoritesComponent implements OnInit {
     });
  }
 
- onClickDeleteFavorite(event) {
+ addToMenu(event) {
   this.idRecipe = (event.target as Element).id;
-  this.authService.getAuth().subscribe( user => {
-    if (user) {
-      this.idUserLogged = user.uid;
-      this.afs.collection(this.idUserLogged).doc(this.idRecipe).delete();
+    this.authService.getAuth().subscribe( user => {
+      if (user) {
+        this.favoritesUser.recip = this.idRecipe;
+        this.idUserLogged = user.uid;
+        this.favoritesUser.us = this.idUserLogged;
+        this.favoritesUser.publicationAdded = (new Date()).getTime();
+        console.log(this.favoritesUser.recip);
+        console.log(this.favoritesUser.us);
+        this.afs.collection(this.idUserLogged + this.idDate).doc(this.idRecipe).set(this.favoritesUser);
     }
   });
-  this.router.navigate(['/favorites']);
+  this.router.navigate(['/menu_date/' + this.idDate]);
 }
 
 }

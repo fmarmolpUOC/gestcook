@@ -3,12 +3,12 @@ export const environment = {
 
   // Initialize Firebase
   firebase: {
-    apiKey: "AIzaSyAfPG4T629EmhgeM6NjuX11rmez5SsV8LA",
-    authDomain: "gestcook-dev.firebaseapp.com",
-    databaseURL: "https://gestcook-dev.firebaseio.com",
-    projectId: "gestcook-dev",
-    storageBucket: "gestcook-dev.appspot.com",
-    messagingSenderId: "1019382864863"
+    apiKey: 'AIzaSyCFdQqcoOAHKil6suTSWw6ODrpOIwTF0Qw',
+    authDomain: 'gestcook-1ef19.firebaseapp.com',
+    databaseURL: 'https://gestcook-1ef19.firebaseio.com',
+    projectId: 'gestcook-1ef19',
+    storageBucket: 'gestcook-1ef19.appspot.com',
+    messagingSenderId: '1074945473193'
   }
 
 };

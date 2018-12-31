@@ -13,6 +13,9 @@ export class FavoriteService {
   favorites: Observable<FavoriteInterface[]>;
   favorite: Observable<FavoriteInterface>;
 
+  menus: Observable<FavoriteInterface[]>;
+  menu: Observable<FavoriteInterface>;
+
 
   constructor(
     private afs: AngularFirestore,
@@ -30,6 +33,19 @@ export class FavoriteService {
     });
   return this.favorites;
  }
+
+ getAllMenu(idUserLogged: string, idTimestamp: any): Observable<FavoriteInterface[]> {
+  this.menus = this.afs.collection(idUserLogged + idTimestamp).snapshotChanges()
+    .map(changes => {
+      return changes.map(action => {
+        const data = action.payload.doc.data() as FavoriteInterface;
+        data.recip = action.payload.doc.id;
+        return data;
+      });
+  });
+return this.menus;
+}
+
 
 
 }

@@ -34,9 +34,30 @@
         </div>
     </div>
     <!--
-    <p>Menú par el dia :{{menu.fecha}}</p>
-    -->
+  <p>Menú par el dia :{{menu.fecha}}</p>
+  -->
 
+</div>
+
+<p class="lead">
+    <a class="btn btn-primary btn-lg" href="/menu_favorites/{{idDate}}" role="button">Añadir receta al menú</a>
+</p>
+
+<div *ngFor="let recipe of recipes">
+    <div *ngFor="let menu of menus">
+        <div *ngIf="recipe.id == menu.recip">
+            <div id="{{recipe.id}}" class="card border-primary mb-3">
+                <h5 class="card-header text-white bg-primary"><img src="{{recipe.imageUrl}}" alt="Card image">{{recipe.title}}</h5>
+                <ul class="list-group list-group-flush">
+                    <input hidden id="{{recipe.id}}">
+                    <li style="display: inline-block;" class="list-group-item">
+                        <button class="btn btn-outline-light" type="button" class="btn-primary" id="{{recipe.id}}" (click)="onClickDeleteMenu($event)">X
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
 
