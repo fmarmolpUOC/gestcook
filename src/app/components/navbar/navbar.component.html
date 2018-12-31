@@ -30,7 +30,10 @@
                 <form class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" routerLink="/profile">{{userEmail}}</a>
+                            <img class="imgProfile" src="{{usr.photoUrl}}" alt="Card image">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/profile">{{usr.email}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" (click)="onLogout()">Salir</a>

@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { RecipeInterface } from '../../interfaces/recipe';
-import { RecipeService } from 'src/app/services/recipe.service';
+import { RecipeService } from '../../services/recipe.service';
 import { AuthService } from '../../services/auth.service';
-import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs/Observable';
 import { FavoriteInterface } from '../../interfaces/favorite';
 import { FavoriteService } from '../../services/favorite.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 
-
 @Component({
-  selector: 'app-favorites',
-  templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.css']
+  selector: 'app-details-recipes',
+  templateUrl: './details-recipes.component.html',
+  styleUrls: ['./details-recipes.component.css']
 })
-export class FavoritesComponent implements OnInit {
+export class DetailsRecipesComponent implements OnInit {
 
-  recipes: RecipeInterface[];
+  idRecipe: string;
+  idUserLogged: string;
+  idUser: string;
+  count = 0;
+  id: string;
+
   favorites: FavoriteInterface[];
 
   recipe: RecipeInterface = {
@@ -29,54 +32,53 @@ export class FavoritesComponent implements OnInit {
     publicationDate: '',
     userId: '',
     userEmail: '',
-    imageUrl: '',
-    userFavorite: Array[''],
+    imageUrl: ''
   };
 
-  favorite: FavoriteInterface = {
+  favoritesUser: FavoriteInterface = {
     recip: '',
     us: '',
+    publicationAdded: '',
   };
 
-  idRecipe: string;
-  idUser: string;
-  idUserLogged: string;
-  id: string;
-  us: string;
-  count = 0;
+  hideme = {};
 
   constructor(
     private recipeService: RecipeService,
     private favoriteService: FavoriteService,
     private authService: AuthService,
     private router: Router,
-    private storage: AngularFireStorage,
     private route: ActivatedRoute,
     private afs: AngularFirestore,
-    ) { }
-
-  searchText: string = '';
+    ) { 
+      this.hideme = {};
+    }
 
   ngOnInit() {
     this.isUserLogged();
-    this.allRecipes();
+    this.getRecipeDetails();
     this.allFavorites();
   }
 
   isUserLogged() {
     this.authService.getAuth().subscribe( user => {
       if (user) {
-        this.idUserLogged = user.uid;
+        this.idUserLogged = user.email;
+        this.idUser = user.uid;
       }
     });
   }
 
-  filterCondition(recipe) {
-    return recipe.title.toLowerCase().indexOf(this.searchText.toLowerCase()) !== -1;
+  getRecipeDetails() {
+    this.idRecipe = this.route.snapshot.params['id'];
+    this.recipeService.getOneRecipe(this.idRecipe).subscribe(recipe => this.recipe = recipe);
   }
 
-  allRecipes() {
-    this.recipeService.getAllRecipes().subscribe(recipes => this.recipes = recipes);
+  onClickDelete() {
+    if (confirm('Estás seguro que quieres eliminar la receta?')) {
+      this.recipeService.deleteRecipe(this.recipe);
+      this.router.navigate(['/recipes']);
+    }
   }
 
   allFavorites() {
@@ -98,8 +100,6 @@ export class FavoritesComponent implements OnInit {
   });
   this.router.navigate(['/favorites']);
 }
-
-
 
 
 

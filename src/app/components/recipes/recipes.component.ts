@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { RecipeInterface } from '../../interfaces/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { AuthService } from '../../services/auth.service';
+import { FavoriteInterface } from '../../interfaces/favorite';
+import { FavoriteService } from '../../services/favorite.service';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
@@ -19,12 +21,15 @@ export class RecipesComponent implements OnInit {
   recipes: RecipeInterface[];
 
   userEmail: string;
+  idUserLogged: string;
+  idRecipe: string;
 
   searchText: string = '';
 
   constructor(
+    private recipeService: RecipeService,
     private authService: AuthService,
-    private recipeService: RecipeService
+    private router: Router,
     ) { }
 
   ngOnInit() {
@@ -35,8 +40,8 @@ export class RecipesComponent implements OnInit {
   isUserLogged() {
     this.authService.getAuth().subscribe( user => {
       if (user) {
+        this.idUserLogged = user.uid;
         this.userEmail = user.email;
-        console.log(this.userEmail);
       }
     });
   }
@@ -52,5 +57,7 @@ export class RecipesComponent implements OnInit {
   filterSearchCondition(recipe) {
     return recipe.title.toLowerCase().indexOf(this.searchText.toLowerCase()) !== -1;
   }
+
+
 
 }

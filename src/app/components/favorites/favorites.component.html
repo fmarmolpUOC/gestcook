@@ -22,17 +22,22 @@
 </div>
 
 <div *ngFor="let recipe of recipes">
-    <div *ngFor="let favorite of recipe.userFavorite">
+    <div *ngFor="let favorite of favorites">
 
-        <div class="card border-primary mb-3" *ngIf="idUserLogged == favorite && filterCondition(recipe)">
+        <div class="card border-primary mb-3" *ngIf="recipe.id == favorite.recip && filterCondition(recipe)">
             <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
             <img src="{{recipe.imageUrl}}" alt="Card image">
             <div class="card-body">
                 <p class="card-text">{{recipe.description}}</p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a href="/details/{{recipe.id}} " class="card-link ">Leer más</a></li>
-                <li class="list-group-item" *ngIf="idUserLogged == favorite"><i id="{{recipe.id}}" class="fas fa-bookmark"></i></li>
+
+                <li class="list-group-item"><a href="/details_favorites/{{recipe.id}} " class="card-link ">Leer más</a></li>
+
+                <li style="display: inline-block;" class="list-group-item">
+                    <button class="btn btn-outline-light" type="button" class="btn-primary" id="{{recipe.id}}" (click)="onClickDeleteFavorite($event)">favorita -</button>
+                </li>
+
             </ul>
             <div class="card-footer text-muted">
                 <p>{{recipe.publicationDate | date: 'dd/MM/yy'}} <small class="text-muted ">({{recipe.userEmail}})</small></p>

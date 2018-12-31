@@ -1,10 +1,86 @@
 <app-navbar></app-navbar>
-<div class="row">
-    <div class="col-md-6 mx-auto mt-3">
-        <h1>Perfil de usuario</h1>
-        <h5>{{user.name}}</h5>
-        <h5>{{user.email}}</h5>
-        <img src="{{user.photoUrl}}" class="rounded-circle img-thumbnail" alt="profile image">
 
+<div class="bd-example-container-body">
+    <div class="row justify-content-md-center">
+        <div class="card-wrapper">
+            <div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
+                <div class="card-header text-center">
+                    <h1>Perfil de usuario</h1>
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text"><img src="{{usr.photoUrl}}" class="rounded-circle img-thumbnail" alt="profile image"></p>
+                    <h4 class="card-title">{{usr.email}}</h4>
+                </div>
+                <!--<a routerLink="/editprofile/" class="badge badge-primary">Editar</a>-->
+            </div>
+            <div class="card mb-3">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h5>Nombre</h5>
+                        <p *ngIf="usr.name; else noName" class="card-text">{{usr.name}}</p>
+                        <ng-template #noName>
+                            <p class="card-text text-muted"><small>Nombre</small></p>
+                        </ng-template>
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Apellidos</h5>
+                        <p *ngIf="usr.surname; else noSurname" class="card-text">{{usr.surname}}</p>
+                        <ng-template #noSurname>
+                            <p class="card-text text-muted"><small>Apellidos</small></p>
+                        </ng-template>
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Calle</h5>
+                        <p *ngIf="usr.street; else noStreet" class="card-text">{{usr.street}}</p>
+                        <ng-template #noStreet>
+                            <p class="card-text text-muted"><small>Calle</small></p>
+                        </ng-template>
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Número</h5>
+                        <p *ngIf="usr.number; else noNumber" class="card-text">{{usr.number}}</p>
+                        <ng-template #noNumber>
+                            <p class="card-text text-muted"><small>Nº</small></p>
+                        </ng-template>
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Código postal</h5>
+                        <p *ngIf="usr.cp; else noCP" class="card-text">{{usr.cp}}</p>
+                        <ng-template #noCP>
+                            <p class="card-text text-muted"><small>C.P.</small></p>
+                        </ng-template>
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Población</h5>
+                        <p *ngIf="usr.town; else noTown" class="card-text">{{usr.town}}</p>
+                        <ng-template #noTown>
+                            <p class="card-text text-muted"><small>Población</small></p>
+                        </ng-template>
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Provincia</h5>
+                        <p *ngIf="usr.province; else noProvince" class="card-text">{{usr.province}}</p>
+                        <ng-template #noProvince>
+                            <p class="card-text text-muted"><small>Provincia</small></p>
+                        </ng-template>
+                    </li>
+                    <li class="list-group-item">
+                        <h5>País</h5>
+                        <p *ngIf="usr.state; else noState" class="card-text">{{usr.state}}</p>
+                        <ng-template #noState>
+                            <p class="card-text text-muted">España</p>
+                        </ng-template>
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Teléfono</h5>
+                        <p *ngIf="usr.phone; else noPhone" class="card-text">{{usr.phone}}</p>
+                        <ng-template #noPhone>
+                            <p class="card-text text-muted"><small>Nº teléfono</small></p>
+                        </ng-template>
+                    </li>
+                </ul>
+                <button type="button" class="btn btn-primary" routerLink="/editprofile/">Editar</button>
+            </div>
+        </div>
     </div>
 </div>

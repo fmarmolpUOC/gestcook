@@ -12,3 +12,8 @@ img {
         width: 100%;
     }
 }
+
+.fa-bookmark {
+    margin-left: 0.5em;
+    color: coral;
+}

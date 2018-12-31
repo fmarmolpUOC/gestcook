@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6">
-        <a routerLink="/details/{{recipe.id}}" class="btn btn-link">
+        <a routerLink="/details_recipes/{{recipe.id}}" class="btn btn-link">
             <i class="fa fa-arrow-circle-o-left"></i>Atrás
         </a>
     </div>
@@ -52,7 +52,10 @@
                             <span class="progressText" *ngIf="urlImage | async">100%</span>
                         </div>
                     </div>
-                    <input #imageRecipe type="hidden" [value]="urlImage | async">
+                    <input #imageRecipe *ngIf="urlImage | async; else sameImage" type="hidden" [value]="urlImage | async">
+                    <ng-template #sameImage>
+                        <input #imageRecipe type="hidden" [value]="recipe.imageUrl">
+                    </ng-template>
                     <input type="submit" value="Modificar" class="btn btn-primary btn-block">
                 </form>
             </div>
