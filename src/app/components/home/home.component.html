@@ -23,7 +23,7 @@
 </div>
 
 <div *ngFor="let recipe of recipes">
-    <div *ngIf="idUserLogged != recipe.userId &&filterCondition(recipe)">
+    <div *ngIf="idUserLogged != recipe.userId && filterCondition(recipe)">
         <div id="{{recipe.id}}" class="card border-primary mb-3">
             <h3 class="card-header text-white bg-primary">{{recipe.title}}</h3>
             <img src="{{recipe.imageUrl}}" alt="Card image">
