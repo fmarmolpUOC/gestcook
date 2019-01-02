@@ -85,10 +85,10 @@ export class MenuDateComponent implements OnInit {
   }
 
   addRecipeToMenu(date) {
-      const id = date;
-      this.idTimestamp = (new Date(id)).getTime();
-      console.log(this.idTimestamp);
-      this.router.navigate(['/menu_favorites/' + this.idTimestamp]);
+     // const id = date;
+      //this.idTimestamp = (new Date(id)).getTime();
+     // console.log(this.idTimestamp);
+      this.router.navigate(['/menu_recipes/' + this.timestampToDate]);
     }
 
   addRecipeToMenu2() {

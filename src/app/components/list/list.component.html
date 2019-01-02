@@ -1,3 +1,91 @@
-<p>
-  list works!
-</p>
+<div class="container">
+    <app-navbar></app-navbar>
+</div>
+
+
+<div class="jumbotron ">
+    <h1 class="display-3 ">Lista</h1>
+    <p class="lead ">En esta sección puedes crear de forma automática la lista de la compra.</p>
+    <hr class="my-4 ">
+    <p>Selecciona una fecha para mostrar todos los productos que componen el menú.</p>
+
+    <div class="control-section">
+        <div class="content-wrapper">
+            <div id='content' class='box-form' style="width:300px; padding-top: 25px;">
+                <form [formGroup]="skillForm" novalidate id="formId">
+                    <div class="form-group">
+                        <ejs-datepicker formControlName="date" name="date" placeholder="Selecciona una fecha" floatLabelType="Always">
+                        </ejs-datepicker>
+                    </div>
+                    <div *ngIf="skillForm.controls['date'].hasError('required') && skillForm.controls['date'].touched" class="alert alert-danger">Date value is required</div>
+                    <div *ngIf="skillForm.controls['date'].value">
+                        <table>
+                            <tr>
+                                <td style="width:50%">Lista para el día: </td>
+                                <td class="formtext"> {{ skillForm.controls.date.value | date:"dd-MM-yyyy" }}</td>
+                            </tr>
+                        </table>
+                        <p class="lead">
+                            <button class="btn btn-outline-light" type="button" class="btn-primary" (click)="callMenu(skillForm.controls.date.value)">Mostrar lista</button>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--
+    <p>Menú par el dia :{{menu.fecha}}</p>
+    -->
+</div>
+
+<div *ngIf="menus && menus.length ==0">
+    <h3 class="alert alert-dismissible alert-danger">No existe menú para esta fecha.</h3>
+</div>
+
+<div *ngIf="menus && menus.length > 0">
+    <!-- open a modal window by clicking button-->
+    <p>
+        <button type="button" class="btn btn-outline-light" class="btn-primary" data-toggle="modal" data-target="#bootstrapModel">Comprar ingredientes</button>
+    </p>
+    <!-- Modal section -->
+    <div id="bootstrapModel" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" class="alert alert-dismissible alert-warning">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Opción no implementada.</h4>
+                </div>
+                <!-- model body section -->
+                <div class="modal-body">
+                    <p>Proximamente podrás comprar y hacer que te lleven a casa todos los ingredientes de las recetas que component tu menú.</p>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngFor="let recipe of recipes">
+    <div *ngFor="let menu of menus">
+        <div *ngIf="recipe.id == menu.recip">
+            <div id="{{recipe.id}}" class="card border-primary mb-3">
+                <h5 class="card-header text-white bg-primary">{{recipe.title}}</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h5>Ingredientes</h5>
+                        <p class="card-text">{{recipe.ingredients}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container ">
+    <router-outlet></router-outlet>
+</div>

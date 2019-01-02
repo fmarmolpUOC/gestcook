@@ -27,21 +27,8 @@
             <h5>Ingredientes</h5>
             <p class="card-text">{{recipe.ingredients}}</p>
         </li>
-
-        <!--
-        <li style="display: inline-block;" class="list-group-item">
-            <button class="btn btn-outline-light" type="button" class="btn-primary" id="{{recipe.id}}" (click)="onClickAddFavorite($event)">favorita +
-                </button>
-            <span *ngFor="let favorite of favorites">
-                    <span *ngIf="recipe.id === favorite.recip">
-                            <a class="favorite" href="/favorites"><i [hidden]="hideme[recipe.id]" class="fas fa-bookmark"></i></a>
-                    </span>
-            </span>
-        </li>
-        -->
-
     </ul>
-    <div class="card-body" *ngIf=" idUserLogged == recipe.userEmail || idUserLogged =='gestcook.0@gmail.com' ">
+    <div class="card-body" *ngIf=" idUserLoggedEmail == admin">
         <a routerLink="/edit/{{recipe.id}}" class="badge badge-primary">Editar</a>
         <a routerLink="/recipes" style="margin-left: 1em;" class="badge badge-danger text-white" (click)="onClickDelete()">Eliminar</a>
     </div>

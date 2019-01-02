@@ -33,3 +33,38 @@ table {
 button {
     margin-right: 1em;
 }
+
+.modal-body {
+    text-align: justify;
+}
+
+.e-calendar .e-content td.e-focused-date.e-today span.e-day {
+    background: #eee;
+    border: 1px solid #e95420;
+    color: #e95420;
+}
+
+.e-calendar .e-content td.e-today.e-selected span.e-day {
+    background-color: #e95420;
+    border: 1px solid #e95420;
+    box-shadow: inset 0 0 0 2px #fff;
+    color: #fff;
+}
+
+.e-btn.e-flat.e-primary,
+.e-css.e-btn.e-flat.e-primary {
+    background-color: transparent;
+    border-color: transparent;
+    color: #e95420;
+    border: 1px solid #e95420;
+}
+
+.e-date-wrapper span.e-input-group-icon.e-date-icon.e-icons.e-active {
+    color: #e95420;
+    border: 1px solid #e95420;
+}
+
+span.e-float-line {
+    color: #e95420;
+    border: 1px solid #e95420;
+}

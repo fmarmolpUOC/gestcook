@@ -9,6 +9,7 @@ import { FavoriteService } from '../../services/favorite.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 
 
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -18,8 +19,9 @@ export class DetailsComponent implements OnInit {
 
   idRecipe: string;
   idUserLogged: string;
+  idUserLoggedEmail: string;
   idUser: string;
-  count = 0;
+  admin: string;
   id: string;
 
   favorites: FavoriteInterface[];
@@ -64,8 +66,10 @@ export class DetailsComponent implements OnInit {
   isUserLogged() {
     this.authService.getAuth().subscribe( user => {
       if (user) {
-        this.idUserLogged = user.email;
+        this.idUserLoggedEmail = user.email;
         this.idUser = user.uid;
+        this.admin = 'gestcook.0@gmail.com';
+        console.log(this.idUserLoggedEmail);
       }
     });
   }

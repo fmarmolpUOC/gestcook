@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { FavoriteInterface } from '../../interfaces/favorite';
 import { FavoriteService } from '../../services/favorite.service';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-details-favorites',
@@ -50,6 +51,7 @@ export class DetailsFavoritesComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private afs: AngularFirestore,
+    private location: Location,
     ) { 
       this.hideme = {};
     }
@@ -99,6 +101,10 @@ export class DetailsFavoritesComponent implements OnInit {
     }
   });
   this.router.navigate(['/favorites']);
+}
+
+goBack() {
+  this.location.back();
 }
 
 

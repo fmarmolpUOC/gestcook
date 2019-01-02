@@ -9,8 +9,6 @@ import { Observable } from 'rxjs/Observable';
 import { FavoriteInterface } from '../../interfaces/favorite';
 import { FavoriteService } from '../../services/favorite.service';
 import { AngularFirestore } from 'angularfire2/firestore';
-// import { ButtonComponent } from '@syncfusion/ej2-angular-buttons';
-// import { DatePickerService, DatePickerModule } from '@dannyboyng/datepicker';
 
 
 @Component({
