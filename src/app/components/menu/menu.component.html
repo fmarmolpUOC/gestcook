@@ -21,17 +21,13 @@
                     <div *ngIf="skillForm.controls['date'].value">
                         <table>
                             <tr>
-                                <td style="width:50%">Fecha seleccionada: </td>
-                                <td class="formtext">{{ skillForm.controls.date.value | date:"dd-MM-yyyy" }}</td>
+                                <td style="width:50%">Menú para el día: </td>
+                                <td class="formtext"> {{ skillForm.controls.date.value | date:"dd-MM-yyyy" }}</td>
                             </tr>
                         </table>
                         <p class="lead">
                             <button class="btn btn-outline-light" type="button" class="btn-primary" (click)="callMenu(skillForm.controls.date.value)">Mostrar menú</button>
                         </p>
-                        <p class="lead">
-                            <button class="btn btn-outline-light" type="button" class="btn-primary" (click)="addRecipeToMenu(skillForm.controls.date.value)">Añadir receta</button>
-                        </p>
-
                     </div>
                 </form>
             </div>
@@ -42,26 +38,37 @@
     -->
 </div>
 
+<div *ngIf="menus && menus.length ==0">
+    <h3>Añadir: </h3>
+    <p class="lead">
+        <button class="btn btn-outline-light" type="button" class="btn-primary" (click)="addRecipeToMenu(skillForm.controls.date.value)">Mis recetas</button>
+        <button class="btn btn-outline-light" type="button" class="btn-primary" (click)="addRecipeToMenu2(skillForm.controls.date.value)">Favoritas</button>
+    </p>
+    <h3 class="alert alert-dismissible alert-danger">No existe menú para esta fecha.</h3>
+</div>
+<div *ngIf="menus && menus.length > 0">
+    <h3>Añadir: </h3>
+    <p class="lead">
+        <button class="btn btn-outline-light" type="button" class="btn-primary" (click)="addRecipeToMenu(skillForm.controls.date.value)">Mis recetas</button>
+        <button class="btn btn-outline-light" type="button" class="btn-primary" (click)="addRecipeToMenu2(skillForm.controls.date.value)">Favoritas</button>
+    </p>
+</div>
 <div *ngFor="let recipe of recipes">
     <div *ngFor="let menu of menus">
-        <div *ngIf="recipe.id == menu.recip; else noMenu">
-            <ng-template #noMenu>
-                <p>No hay recetas</p>
-            </ng-template>
+        <div *ngIf="recipe.id == menu.recip">
             <div id="{{recipe.id}}" class="card border-primary mb-3">
                 <h5 class="card-header text-white bg-primary"><img src="{{recipe.imageUrl}}" alt="Card image">{{recipe.title}}</h5>
                 <ul class="list-group list-group-flush">
                     <input hidden id="{{recipe.id}}">
                     <li style="display: inline-block;" class="list-group-item">
-                        <button class="btn btn-outline-light" type="button" class="btn-primary" id="{{recipe.id}}" (click)="onClickDeleteMenu($event)">X
-                            </button>
+                        <button class="btn btn-outline-light" type="button" class="btn-primary" id="{{recipe.id}}" (click)="onClickDeleteMenu($event)">X</button>
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
 </div>
+
 
 
 

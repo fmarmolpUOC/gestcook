@@ -27,6 +27,7 @@ export class MenuComponent implements OnInit {
   idDate: '';
   idUserLogged: string;
   idRecipe: string;
+  
 
   recipes: RecipeInterface[];
   menus: FavoriteInterface[];
@@ -69,6 +70,13 @@ callMenu(menuDate) {
 }
 
 addRecipeToMenu(date) {
+  const id = date;
+  this.idTimestamp = (new Date(id)).getTime();
+  console.log(this.idTimestamp);
+  this.router.navigate(['/menu_recipes/' + this.idTimestamp]);
+}
+
+addRecipeToMenu2(date) {
     const id = date;
     this.idTimestamp = (new Date(id)).getTime();
     console.log(this.idTimestamp);
@@ -97,7 +105,7 @@ addRecipeToMenu(date) {
     this.authService.getAuth().subscribe( user => {
       if (user) {
         this.idUserLogged = user.uid;
-        this.afs.collection(this.idUserLogged + this.idDate).doc(this.idRecipe).delete();
+        this.afs.collection(this.idUserLogged + this.idTimestampMenu).doc(this.idRecipe).delete();
       }
     });
   }

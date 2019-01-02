@@ -21,7 +21,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MenuFavoritesComponent } from './components/menu-favorites/menu-favorites.component';
 import { MenuRecipesComponent } from './components/menu-recipes/menu-recipes.component';
 import { MenuDateComponent } from './components/menu-date/menu-date.component';
-
+import { ListComponent } from './components/list/list.component';
 
 
 
@@ -42,6 +42,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'menu', component: MenuComponent, canActivate: [AuthGuard]},
   {path: 'menu_date/:id', component: MenuDateComponent, canActivate: [AuthGuard]},
+  {path: 'list', component: ListComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'passreset', component: PassresetComponent},

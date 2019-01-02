@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { FavoriteInterface } from '../../interfaces/favorite';
 import { FavoriteService } from '../../services/favorite.service';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-menu-date',
@@ -21,7 +22,11 @@ export class MenuDateComponent implements OnInit {
   skillForm: FormGroup;
   public dateValue: Date = new Date();
   idTimestamp: any;
+  idTimestampMenu: any;
+  timestampToDate: any;
+  timestampToDate2: any;
   idDate: '';
+  idDate2: '';
   idUserLogged: string;
   idRecipe: string;
 
@@ -51,6 +56,10 @@ export class MenuDateComponent implements OnInit {
   getIdDate() {
     this.idDate = this.route.snapshot.params['id'];
     console.log(this.idDate);
+    const toDate = new DatePipe('en-US');
+    this.timestampToDate2 = toDate.transform(this.idDate, 'dd/MM/yy');
+    this.timestampToDate = this.idDate;
+    console.log(this.timestampToDate);
 
   }
 
@@ -68,6 +77,25 @@ export class MenuDateComponent implements OnInit {
     });
   }
 
+  callMenu(menuDate) {
+    const dateMenu = menuDate;
+    this.idTimestampMenu = (new Date(dateMenu)).getTime();
+    console.log(this.idTimestampMenu);
+    this.allMenu();
+  }
+
+  addRecipeToMenu(date) {
+      const id = date;
+      this.idTimestamp = (new Date(id)).getTime();
+      console.log(this.idTimestamp);
+      this.router.navigate(['/menu_favorites/' + this.idTimestamp]);
+    }
+
+  addRecipeToMenu2() {
+    console.log(this.timestampToDate);
+    this.router.navigate(['/menu_favorites/' + this.timestampToDate]);
+    }
+
 allRecipes() {
   this.recipeService.getAllRecipes().subscribe(recipes => this.recipes = recipes);
 }
@@ -80,12 +108,6 @@ allMenu() {
     }
   });
 }
-
-addRecipeToMenu(date) {
-    const id = date;
-    this.idTimestamp = (new Date(id)).getTime();
-    console.log(this.idTimestamp);
-  }
 
   onClickDeleteMenu(event) {
     this.idRecipe = (event.target as Element).id;
