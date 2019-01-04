@@ -64,3 +64,7 @@ span.e-float-line {
     color: #e95420;
     border: 1px solid #e95420;
 }
+
+.e-datepicker .e-model-header {
+    background-color: #e95420;
+}

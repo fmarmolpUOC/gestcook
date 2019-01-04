@@ -1,0 +1,19 @@
+img {
+    height: 50%;
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    img {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.fa-bookmark {
+    margin-left: 0.5em;
+    color: coral;
+}

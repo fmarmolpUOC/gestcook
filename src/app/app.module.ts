@@ -39,6 +39,7 @@ import { MenuFavoritesComponent } from './components/menu-favorites/menu-favorit
 import { MenuRecipesComponent } from './components/menu-recipes/menu-recipes.component';
 import { MenuDateComponent } from './components/menu-date/menu-date.component';
 import { ListComponent } from './components/list/list.component';
+import { DetailsMyRecipesComponent } from './components/details-my-recipes/details-my-recipes.component';
 
 
 // Firebase
@@ -86,7 +87,8 @@ import { AuthGuard } from './guards/auth.guard';
     MenuFavoritesComponent,
     MenuRecipesComponent,
     MenuDateComponent,
-    ListComponent
+    ListComponent,
+    DetailsMyRecipesComponent
   ],
   imports: [
     BrowserModule,

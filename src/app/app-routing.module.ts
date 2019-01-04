@@ -22,8 +22,7 @@ import { MenuFavoritesComponent } from './components/menu-favorites/menu-favorit
 import { MenuRecipesComponent } from './components/menu-recipes/menu-recipes.component';
 import { MenuDateComponent } from './components/menu-date/menu-date.component';
 import { ListComponent } from './components/list/list.component';
-
-
+import { DetailsMyRecipesComponent } from './components/details-my-recipes/details-my-recipes.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/landing', pathMatch: 'full'},
@@ -35,6 +34,7 @@ const routes: Routes = [
   {path: 'details/:id', component: DetailsComponent, canActivate: [AuthGuard]},
   {path: 'details_favorites/:id', component: DetailsFavoritesComponent, canActivate: [AuthGuard]},
   {path: 'details_recipes/:id', component: DetailsRecipesComponent, canActivate: [AuthGuard]},
+  {path: 'details_my_recipes/:id', component: DetailsMyRecipesComponent, canActivate: [AuthGuard]},
   {path: 'edit/:id', component: EditComponent, canActivate: [AuthGuard]},
   {path: 'menu_favorites/:id', component: MenuFavoritesComponent, canActivate: [AuthGuard]},
   {path: 'menu_recipes/:id', component: MenuRecipesComponent, canActivate: [AuthGuard]},
