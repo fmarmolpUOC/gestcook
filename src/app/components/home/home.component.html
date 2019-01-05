@@ -22,6 +22,8 @@
     <p>Busca recetas o guardalas en la sección de tus favoritas.</p>
 </div>
 
+
+<!--Totes les receptes menys la de l'usuari registrat-->
 <div *ngFor="let recipe of recipes">
     <div *ngIf="idUserLogged != recipe.userId && filterCondition(recipe)">
         <div id="{{recipe.id}}" class="card border-primary mb-3">
