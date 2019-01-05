@@ -54,15 +54,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onAddUser(): void {
-    this.authService.registerUser(this.email, this.password, this.inputImageUser.nativeElement.value)
+    this.authService.registerUser(this.email, this.password/*, this.inputImageUser.nativeElement.value*/)
       .then((res) => {
         this.authService.getAuth().subscribe(user => {
           if (user) {
             console.log(user.email);
-             user.updateProfile({
+             /*user.updateProfile({
                displayName: '',
                photoURL: this.inputImageUser.nativeElement.value,
-             });
+             });*/
             }
           });  // .then(() => {
               this.router.navigate(['/home']);

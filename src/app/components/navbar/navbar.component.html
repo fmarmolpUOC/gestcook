@@ -30,7 +30,8 @@
                 <form class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <img class="imgProfile" src="{{usr.photoUrl}}" alt="Card image">
+                            <img *ngIf="user.photoUrl, else noProfile" class="imgProfile rounded-circle img-thumbnail" src="{{user.photoUrl}}" alt="profile image">
+                            <ng-template #noProfile><img class="imgProfile rounded-circle img-thumbnail" src="\assets\userProfile.png" alt="profile image"></ng-template>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/profile">{{usr.email}}</a>

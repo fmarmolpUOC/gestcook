@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { auth } from 'firebase/app';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { UserInterface } from '../interfaces/user';
 import { Observable } from 'rxjs/Observable';
@@ -32,7 +33,7 @@ export class AuthService {
       this.user = afAuth.authState;
       this.user.subscribe(
               (user) => {
-                if (!user) {
+                if (user) {
                   this.userDetails = user;
                   const id = this.userDetails.uid;
                   const email = this.userDetails.email;
@@ -56,22 +57,22 @@ export class AuthService {
   }*/
 
 
-  registerUser(email: string, password: string, url: string) {
+  registerUser(email: string, password: string,/* url: string*/) {
     return new Promise((resolve, reject) => {
       this.afAuth.auth.createUserWithEmailAndPassword(email, password)
         .then(userData => {
           resolve(userData),
-            this.updateUserData(userData.user, url);
+            this.updateUserData(userData.user/*, url*/);
         }).catch(err => console.log(reject(err)));
     });
   }
 
-  private updateUserData(user, url) {
+  private updateUserData(user/*, url*/) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const data: UserInterface = {
       id: user.uid,
       email: user.email,
-      photoUrl: url,
+      photoUrl: ''/*url*/,
 
       name: '',
       surname: '',
@@ -82,7 +83,7 @@ export class AuthService {
       province: '',
       state: 'España',
     };
-    console.log(user.id, user.email, user.photoUrl);
+    console.log(user.id, user.email/*, user.photoUrl*/);
     return userRef.set(data, { merge: true });
   }
 
@@ -113,7 +114,7 @@ export class AuthService {
       province: '',
       state: 'España',
     };
-    console.log(id, email, photoUrl);
+    console.log(id, email/*, photoUrl*/);
     return userRef.set(data, { merge: true });
   }
 
