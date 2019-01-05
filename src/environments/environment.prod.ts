@@ -2,7 +2,7 @@ export const environment = {
   production: true,
 
   // Initialize Firebase
-  firebase: {
+  firebaseConfig: {
     apiKey: 'AIzaSyCFdQqcoOAHKil6suTSWw6ODrpOIwTF0Qw',
     authDomain: 'gestcook-1ef19.firebaseapp.com',
     databaseURL: 'https://gestcook-1ef19.firebaseio.com',

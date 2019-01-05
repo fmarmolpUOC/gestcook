@@ -7,11 +7,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password'; // https://www.npmjs.com/package/ngx-show-hide-password
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-// import { DatePickerModule } from '@dannyboyng/datepicker';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 
 
 
@@ -50,8 +50,6 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AuthService } from './services/auth.service';
 import { RecipeService } from './services/recipe.service';
 
-export const firebaseConfig = environment.firebaseConfig;
-
 
 // Envitonments
 import { environment } from '../environments/environment';
@@ -59,6 +57,7 @@ import { environment } from '../environments/environment';
 
 // Guard
 import { AuthGuard } from './guards/auth.guard';
+
 
 
 
@@ -96,14 +95,14 @@ import { AuthGuard } from './guards/auth.guard';
     ReactiveFormsModule,
     ShowHidePasswordModule.forRoot(),
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    DatePickerModule
+    DatePickerModule,
+    ServiceWorkerModule.register('/combined-worker.js', { enabled: environment.production })
 
 
   ],

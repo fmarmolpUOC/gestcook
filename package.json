@@ -22,7 +22,7 @@
         "@angular/platform-browser-dynamic": "~7.0.0",
         "@angular/pwa": "^0.10.7",
         "@angular/router": "~7.0.0",
-        "@angular/service-worker": "~7.0.0",
+        "@angular/service-worker": "^7.0.4",
         "@angular/typescript": "^2.0.0-5d0e199",
         "@dannyboyng/datepicker": "^1.0.5",
         "@syncfusion/ej2-angular-calendars": "^16.4.44",
